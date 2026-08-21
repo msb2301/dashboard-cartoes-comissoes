@@ -1,0 +1,1103 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Copastur | Reunião Mensal de Resultados</title>
+<style>
+:root{--navy:#061a3a;--navy2:#0b2854;--blue:#3aa6ff;--blue2:#8bd3ff;--ice:#eaf5ff;--white:#fff;--muted:#9fb2c9;--line:rgba(255,255,255,.11);--good:#5ee0a0;--warn:#ffd166;--bad:#ff6b7a;--shadow:0 24px 60px rgba(0,0,0,.28)}
+*{box-sizing:border-box}html,body{margin:0;width:100%;height:100%;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--navy);color:var(--white);overflow:hidden}
+body:before{content:"";position:fixed;inset:0;background:radial-gradient(circle at 85% 10%,rgba(58,166,255,.16),transparent 32%),radial-gradient(circle at 10% 90%,rgba(139,211,255,.08),transparent 30%);pointer-events:none}
+.app{height:100%;display:flex;flex-direction:column}.topbar{height:62px;display:flex;align-items:center;justify-content:space-between;padding:0 28px;border-bottom:1px solid var(--line);background:rgba(4,18,42,.82);backdrop-filter:blur(16px);z-index:5}
+.brand{font-weight:800;letter-spacing:.08em;font-size:14px}.brand span{color:var(--blue2);font-weight:500}.top-actions{display:flex;gap:8px}.btn{border:1px solid var(--line);background:rgba(255,255,255,.04);color:#fff;border-radius:10px;padding:9px 12px;cursor:pointer;font-weight:600}.btn:hover{background:rgba(255,255,255,.1)}.btn.primary{background:var(--blue);border-color:var(--blue);color:#061a3a}
+.main{position:relative;z-index:1;flex:1;min-height:0}.slide{position:absolute;inset:0;padding:48px 7vw 74px;display:none;overflow:auto}.slide:not(.active){display:none!important}.slide.active{display:block;animation:fade .28s ease}.slide.active.hero{display:flex}@keyframes fade{from{opacity:.2;transform:translateY(8px)}to{opacity:1;transform:none}}
+.kicker{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--blue2);font-weight:800}.title{font-size:clamp(34px,4vw,62px);line-height:1.02;margin:10px 0 12px;letter-spacing:-.03em}.subtitle{font-size:17px;color:var(--muted);max-width:850px}.section-head{display:flex;justify-content:space-between;gap:30px;align-items:flex-end;margin-bottom:26px}.period{text-align:right;color:var(--muted);font-size:13px}.period strong{display:block;color:#fff;font-size:16px}.grid{display:grid;gap:16px}.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.g4{grid-template-columns:repeat(4,minmax(0,1fr))}
+.card{background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.035));border:1px solid var(--line);border-radius:20px;padding:22px;box-shadow:var(--shadow)}.card h3{margin:0 0 8px;font-size:13px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase}.value{font-size:34px;font-weight:800;letter-spacing:-.03em}.small{font-size:13px;color:var(--muted)}.good{color:var(--good)}.warn{color:var(--warn)}.bad{color:var(--bad)}.blue{color:var(--blue2)}.big-number{font-size:clamp(48px,7vw,92px);font-weight:900;letter-spacing:-.05em}.pill{display:inline-flex;padding:6px 9px;border-radius:999px;background:rgba(255,255,255,.08);font-size:12px;font-weight:800}.pill.good{background:rgba(94,224,160,.12)}.pill.warn{background:rgba(255,209,102,.12)}.pill.bad{background:rgba(255,107,122,.12)}
+.bar{height:10px;background:rgba(255,255,255,.08);border-radius:20px;overflow:hidden}.bar i{display:block;height:100%;background:linear-gradient(90deg,var(--blue),var(--blue2));border-radius:20px}.metric-row{display:flex;justify-content:space-between;gap:20px;align-items:center;margin:12px 0}.metric-row strong{font-size:15px}.chart{width:100%;height:270px}.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 18px}.tab{padding:9px 13px;border-radius:10px;border:1px solid var(--line);background:rgba(255,255,255,.035);color:#cbd8e8;cursor:pointer}.tab.active{background:var(--blue);color:#061a3a;border-color:var(--blue);font-weight:800}
+.hero{min-height:100%;display:flex;align-items:center}.hero-inner{max-width:980px}.hero-logo{font-size:22px;font-weight:900;letter-spacing:.12em;color:var(--blue2)}.hero .title{font-size:clamp(50px,7vw,98px);max-width:950px}.hero-line{width:110px;height:4px;background:var(--blue);margin:30px 0}.hero-meta{display:flex;gap:22px;flex-wrap:wrap;color:var(--muted);font-size:14px}.agenda{counter-reset:item}.agenda .item{display:flex;align-items:center;gap:20px;padding:18px 0;border-bottom:1px solid var(--line)}.num{width:38px;height:38px;border-radius:12px;background:rgba(58,166,255,.14);display:grid;place-items:center;color:var(--blue2);font-weight:900}.item strong{display:block;font-size:17px}.item span{color:var(--muted);font-size:13px}
+.kpi-card{min-height:165px}.kpi-card .label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em}.kpi-card .kpi{font-size:34px;font-weight:900;margin:10px 0}.delta{font-size:13px}.callout{padding:16px 18px;border-left:3px solid var(--blue);background:rgba(58,166,255,.07);border-radius:0 14px 14px 0}.callout.warn{border-color:var(--warn)}.callout.good{border-color:var(--good)}
+table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:11px 10px;border-bottom:1px solid var(--line);font-size:13px}th{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:.08em}td.numr,th.numr{text-align:right}
+.footer{height:58px;border-top:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 28px;color:var(--muted);font-size:12px;z-index:5;background:rgba(4,18,42,.82)}.progress{height:3px;position:absolute;left:0;bottom:0;background:var(--blue);transition:.25s}.nav{display:flex;gap:8px}
+.two-col{display:grid;grid-template-columns:1.35fr .65fr;gap:16px}.mini{font-size:12px;color:var(--muted)}.list{display:grid;gap:10px}.list-item{display:flex;justify-content:space-between;padding:11px 0;border-bottom:1px solid var(--line)}
+.comunicados-list{padding-right:4px;min-height:0;display:flex;flex-direction:column;gap:0}.comunicados-list .list-item{min-height:58px;align-items:flex-start}.comunicados-list::-webkit-scrollbar{width:6px}.comunicados-list::-webkit-scrollbar-thumb{background:rgba(139,211,255,.28);border-radius:999px}.list-item:last-child{border-bottom:0}
+.modal{position:fixed;inset:0;background:rgba(1,8,20,.78);backdrop-filter:blur(12px);display:none;align-items:center;justify-content:center;z-index:20;padding:30px}.modal.show{display:flex}.modal-box{max-width:820px;width:100%;max-height:85vh;overflow:auto;background:#092149;border:1px solid var(--line);border-radius:22px;padding:26px;box-shadow:var(--shadow)}.close{float:right}
+@media(max-width:900px){.slide{padding:30px 24px 70px}.g2,.g3,.g4,.two-col{grid-template-columns:1fr}.topbar{padding:0 16px}.footer{padding:0 16px}.top-actions .btn:nth-child(n+3){display:none}}
+
+/* Layout executivo v2 */
+.app{height:100vh}.topbar{height:58px;padding:0 18px;gap:20px}.top-period{display:flex;align-items:center;gap:16px;font-size:12px;letter-spacing:.04em}.top-period strong{color:#fff}.top-period span{color:var(--blue2);font-weight:800}.top-period i{width:1px;height:18px;background:var(--line)}.update{font-size:11px;color:var(--muted)}.workspace{display:flex;flex:1;min-height:0}.sidebar{width:180px;flex:0 0 180px;border-right:1px solid var(--line);background:rgba(2,15,36,.8);padding:14px 10px;overflow:auto}.side-title,.side-section{font-size:10px;letter-spacing:.14em;color:var(--blue2);font-weight:900;margin:8px 4px}.side-section{margin-top:18px}.side-link{display:flex;align-items:center;gap:7px;width:100%;padding:7px 6px;border:1px solid rgba(255,255,255,.08);background:rgba(255,255,255,.035);color:#eaf5ff;border-radius:6px;margin:4px 0;font-size:10px;text-align:left;cursor:pointer}.side-link:hover,.side-link.active{background:rgba(58,166,255,.16);border-color:rgba(58,166,255,.35)}.side-num{min-width:24px;height:20px;display:grid;place-items:center;background:rgba(58,166,255,.12);border-radius:5px;color:#fff;font-weight:900}.side-nav-buttons{display:grid;grid-template-columns:1fr 1fr;gap:5px}.side-nav-buttons .btn{padding:7px 4px;font-size:10px}.side-progress .bar{margin-top:7px;height:6px}.side-brand{margin-top:34px;color:var(--muted);font-size:9px;line-height:1.5}.content-area{position:relative;flex:1;min-width:0;min-height:0}.overview{z-index:4;height:100%;overflow:auto;padding:18px 18px 70px}.overview-head{display:flex;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:14px}.overview-head h1{font-size:25px;margin:5px 0}.overview-head p{color:var(--muted);margin:0;font-size:12px}.overview-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}.overview-tile{min-height:210px;border:1px solid rgba(255,255,255,.12);border-radius:9px;background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.025));padding:11px;cursor:pointer;position:relative;overflow:hidden}.overview-tile:hover{border-color:rgba(58,166,255,.55);transform:translateY(-1px)}.tile-num{display:inline-grid;place-items:center;width:30px;height:28px;border-radius:6px;background:linear-gradient(135deg,#0879ff,#0f4fb4);font-weight:900;font-size:13px}.tile-title{font-size:12px;font-weight:900;margin:0 0 3px}.tile-sub{font-size:9px;color:var(--muted)}.tile-body{margin-top:10px}.tile-kpis{display:grid;grid-template-columns:repeat(2,1fr);gap:6px}.tile-kpi{padding:7px;border-radius:6px;background:rgba(255,255,255,.055)}.tile-kpi small{display:block;color:var(--muted);font-size:8px;text-transform:uppercase}.tile-kpi strong{display:block;font-size:14px;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.overview .card{box-shadow:none}.main{position:absolute;inset:0}.slide{padding:30px 28px 68px}.slide:not(.active){display:none!important}.slide.active{display:block}.slide.active.hero{display:flex}.footer{height:48px;position:absolute;left:180px;right:0;bottom:0}.progress{height:2px}.kpi-card .kpi,.value{font-size:clamp(21px,2vw,34px);white-space:nowrap;letter-spacing:-.035em}.big-number{font-size:clamp(38px,4.2vw,72px);white-space:nowrap}.card{overflow:hidden}.grid.g4{grid-template-columns:repeat(4,minmax(0,1fr))}.grid.g3{grid-template-columns:repeat(3,minmax(0,1fr))}.grid.g2{grid-template-columns:repeat(2,minmax(0,1fr))}.chart{height:250px}.btn{white-space:nowrap}.wide{width:100%;font-size:10px}.modal-box{max-height:82vh}@media(max-width:1200px){.sidebar{width:170px;flex-basis:170px}.footer{left:170px}.overview-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.update{display:none}.top-period{margin-left:auto}}@media(max-width:800px){.sidebar{display:none}.footer{left:0}.overview-grid{grid-template-columns:1fr}.top-period{display:none}.topbar{padding:0 10px}.slide{padding:24px 16px 64px}.g2,.g3,.g4,.two-col{grid-template-columns:1fr!important}}
+
+.sidebar{position:relative;transition:width .22s ease,flex-basis .22s ease,padding .22s ease}
+.sidebar-toggle{width:30px;height:30px;border:1px solid rgba(255,255,255,.12);background:rgba(58,166,255,.10);color:#fff;border-radius:8px;cursor:pointer;display:grid;place-items:center;margin:0 0 10px auto;font-size:14px}
+.sidebar-toggle:hover{background:rgba(58,166,255,.22)}
+.sidebar.collapsed{width:58px;flex-basis:58px;padding:14px 7px}
+.sidebar.collapsed .side-title,
+.sidebar.collapsed .side-section,
+.sidebar.collapsed .side-nav-buttons,
+.sidebar.collapsed .side-progress,
+.sidebar.collapsed .side-brand,
+.sidebar.collapsed .side-link span:not(.side-num),
+.sidebar.collapsed .sidebar .wide{display:none}
+.sidebar.collapsed .side-link{justify-content:center;padding:5px 2px}
+.sidebar.collapsed .side-num{width:34px;height:28px}
+.kpi,.value,.big-number{max-width:100%;overflow-wrap:anywhere;word-break:break-word}
+.kpi{font-size:clamp(20px,1.85vw,32px)}
+.value{font-size:clamp(20px,1.85vw,31px)}
+.big-number{font-size:clamp(38px,5.5vw,78px)}
+.kpi-card{min-width:0}
+.card{min-width:0}
+.product-chart{display:grid;gap:9px;padding:10px 0 2px}
+.product-row{display:grid;grid-template-columns:130px minmax(80px,1fr) 72px;align-items:center;gap:10px;font-size:12px}
+.product-row .label{color:#d8e7f8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.product-track{height:12px;background:rgba(255,255,255,.08);border-radius:20px;overflow:hidden}
+.product-fill{height:100%;background:linear-gradient(90deg,#1577e8,#72c9ff);border-radius:20px}
+.product-value{text-align:right;font-weight:800;color:#fff}
+@media(max-width:900px){.sidebar{width:58px;flex-basis:58px;padding:14px 7px}.sidebar .side-title,.sidebar .side-section,.sidebar .side-nav-buttons,.sidebar .side-progress,.sidebar .side-brand,.sidebar .side-link span:not(.side-num){display:none}.sidebar .side-link{justify-content:center;padding:5px 2px}.sidebar .side-num{width:34px;height:28px}}
+
+.start-presentation{position:relative;z-index:20;pointer-events:auto}
+.overview-head{position:relative;z-index:10}
+
+.trend-chart{width:100%;height:340px;overflow:hidden}
+.trend-chart svg{display:block;width:100%;height:100%}
+
+/* Modo visual Clean — o modo atual continua sendo o Dark */
+body.clean-mode{
+  --bg:#f4f7fb;--panel:#ffffff;--panel2:#eef3f8;--line:#d8e2ec;
+  --text:#13243a;--muted:#60738a;--blue:#1267a5;--blue2:#2f91c8;--accent:#1267a5;
+  background:var(--bg);color:var(--text);
+}
+body.clean-mode .sidebar{background:#fff;border-right-color:#d8e2ec}
+body.clean-mode .topbar{background:rgba(255,255,255,.94);border-bottom-color:#d8e2ec}
+body.clean-mode .card,body.clean-mode .overview-tile{background:#fff;border-color:#d8e2ec;box-shadow:0 8px 24px rgba(27,58,87,.06)}
+body.clean-mode .side-link{color:#52677d;background:#f7fafd;border-color:#dfe7ef}
+body.clean-mode .side-link.active{color:#1267a5;background:#eaf4fb;border-color:#8bbddd}
+body.clean-mode .btn{color:#17324d;background:#fff;border-color:#c8d7e5}
+body.clean-mode .btn.primary{color:#fff;background:#1267a5;border-color:#1267a5}
+body.clean-mode .tab{background:#fff;border-color:#d8e2ec;color:#52677d}
+body.clean-mode .tab.active{background:#eaf4fb;border-color:#8bbddd;color:#1267a5}
+body.clean-mode .top-period,body.clean-mode .brand{color:#17324d}
+body.clean-mode .hero{background:linear-gradient(135deg,#f8fbfe,#eaf4fb)}
+body.clean-mode .product-track{background:#e8eef4}
+body.clean-mode .product-fill{background:#2f91c8}
+body.clean-mode .trend-chart svg text{fill:#60738a}
+body.clean-mode .trend-chart svg line{stroke:rgba(32,65,95,.14)}
+
+body.clean-mode .title,
+body.clean-mode h1,
+body.clean-mode h2,
+body.clean-mode h3,
+body.clean-mode h4,
+body.clean-mode strong,
+body.clean-mode .kpi,
+body.clean-mode .big-number,
+body.clean-mode .value,
+body.clean-mode .tile-kpi strong,
+body.clean-mode .overview-tile h3,
+body.clean-mode .brand{
+  color:#0b2341 !important;
+}
+body.clean-mode .kicker,
+body.clean-mode .side-title,
+body.clean-mode .side-section{
+  color:#1267a5 !important;
+}
+
+body.clean-mode .trend-chart svg circle{
+  fill:#0b2341 !important;
+  stroke:#0b2341 !important;
+}
+
+.data-source-status{
+  font-size:10px;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  color:#7f94ad;
+  margin:0 0 12px 2px;
+}
+body.clean-mode .data-source-status{color:#1267a5}
+
+/* V25 — apresentação sem barra de rolagem */
+.slide{overflow:hidden!important;padding:30px 5.5vw 64px}
+.slide .card{max-height:calc(100vh - 180px);overflow:hidden}
+.chart{height:220px}
+.section-head{margin-bottom:16px}
+.title{font-size:clamp(30px,3.4vw,54px)}
+.subtitle{font-size:15px}
+@media (max-height:850px){
+  .slide{padding:24px 4.8vw 30px}
+  .section-head{margin-bottom:12px}
+  .title{font-size:clamp(28px,3.1vw,48px);margin:6px 0 8px}
+  .subtitle{font-size:14px}
+  .card{padding:16px!important}
+  .chart{height:190px}
+  .metric-row{margin:7px 0}
+  .table-wrap{max-height:calc(100vh - 260px);overflow:hidden}
+}
+@media (max-height:720px){
+  .slide{padding:18px 4vw 22px}
+  .title{font-size:clamp(25px,2.8vw,42px)}
+  .subtitle{font-size:13px}
+  .section-head{margin-bottom:8px}
+  .card{padding:12px!important}
+  .chart{height:165px}
+}
+
+/* V26 — navegação discreta, sem sobreposição de conteúdo */
+.footer{
+  position:fixed!important;
+  left:0!important;right:0!important;bottom:0!important;
+  height:0!important;
+  min-height:0!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  pointer-events:none!important;
+  z-index:40!important;
+}
+.footer>div:first-child{display:none!important}
+.footer .nav{
+  position:absolute!important;
+  right:14px!important;
+  bottom:10px!important;
+  display:flex!important;
+  gap:6px!important;
+  pointer-events:auto!important;
+}
+.footer .nav .btn{
+  width:42px!important;
+  height:36px!important;
+  min-width:42px!important;
+  padding:0!important;
+  border-radius:10px!important;
+  font-size:16px!important;
+}
+.footer .progress{
+  position:fixed!important;
+  left:0!important;
+  bottom:0!important;
+  height:2px!important;
+  z-index:41!important;
+}
+/* V28 — correções de integração e ciclo */
+.period strong{white-space:nowrap}
+.gestao-empty{color:var(--muted);font-size:13px}
+
+/* V30 — status coloridos na Tela 13 */
+.pill.status-aguardando{background:rgba(255,209,102,.18);color:#ffd166;border:1px solid rgba(255,209,102,.28)}
+.pill.status-andamento{background:rgba(58,166,255,.16);color:#8bd3ff;border:1px solid rgba(58,166,255,.28)}
+.pill.status-concluido{background:rgba(94,224,160,.16);color:#5ee0a0;border:1px solid rgba(94,224,160,.28)}
+.pill.status-planejado{background:rgba(167,139,250,.16);color:#c4b5fd;border:1px solid rgba(167,139,250,.28)}
+.pill.status-atrasado{background:rgba(255,107,122,.16);color:#ff6b7a;border:1px solid rgba(255,107,122,.28)}
+</style>
+
+<style id="access-gate-style">
+#accessGate{
+  position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;
+  background:linear-gradient(135deg,#061426,#0b2341 55%,#12345c);padding:24px;
+}
+.access-box{
+  width:min(430px,92vw);padding:34px;border-radius:22px;background:rgba(8,22,40,.96);
+  border:1px solid rgba(94,200,255,.22);box-shadow:0 24px 80px rgba(0,0,0,.45);
+  text-align:center;color:#fff;
+}
+.access-box .access-logo{font-size:12px;letter-spacing:.18em;color:#5ec8ff;font-weight:700;margin-bottom:10px}
+.access-box h1{margin:0 0 8px;font-size:28px}
+.access-box p{margin:0 0 24px;color:#9fb2c9;line-height:1.5}
+.access-box input{
+  width:100%;box-sizing:border-box;padding:13px 14px;border-radius:11px;border:1px solid #294968;
+  background:#0c1d32;color:#fff;outline:none;margin-bottom:10px;font-size:15px;
+}
+.access-box button{
+  width:100%;padding:13px;border:0;border-radius:11px;background:#5ec8ff;color:#061426;
+  font-weight:800;cursor:pointer;font-size:15px;
+}
+.access-box .access-error{min-height:20px;margin:10px 0 0;color:#ff8f8f;font-size:13px}
+.access-box .access-note{margin-top:16px;font-size:11px;color:#7187a0}
+</style>
+
+
+<style id="tela14-fit-fix">
+/* Tela 14: compacta para que os comunicados caibam na viewport. */
+
+
+
+
+
+
+</style>
+
+
+<style id="people-slide-fit-fix">
+.people-slide{
+  overflow-y:auto !important;
+  overflow-x:hidden !important;
+  padding-top:22px !important;
+  padding-bottom:58px !important;
+}
+.people-slide > .card{padding:14px 18px !important;}
+.people-slide > .grid{margin-top:10px !important;}
+.people-slide > .grid .card{padding:14px 18px !important;}
+.people-slide .list-item{padding:9px 0 !important;}
+.people-slide .comunicados-list{max-height:none !important;overflow:visible !important;}
+</style>
+
+</head>
+<body>
+
+<div id="accessGate">
+  <div class="access-box">
+    <div class="access-logo">COPASTUR</div>
+    <h1>Dashboard Executivo</h1>
+    <p>Acesso restrito. Informe seu e-mail corporativo para entrar.</p>
+    <input id="accessEmail" type="email" autocomplete="email" placeholder="seu.nome@copastur.com.br">
+    <button onclick="entrarDashboard()">Entrar no dashboard</button>
+    <div id="accessError" class="access-error"></div>
+    <div class="access-note">Acesso permitido somente para endereços @copastur.com.br</div>
+  </div>
+</div>
+
+<div class="app">
+<header class="topbar">
+  <div class="brand">COPASTUR</div>
+  <div class="top-period"><strong>JULHO/2026 · FECHADO</strong><i></i><span>AGOSTO/2026 · PARCIAL</span></div>
+  <div class="top-actions"><span class="update">Última atualização: automática via Google Sheets</span><button class="btn" onclick="toggleFullscreen()">⛶ Tela cheia</button><button class="btn primary" onclick="openModal('ia')">✦ IA Insights</button></div>
+</header>
+<div class="workspace">
+<aside class="sidebar"><button class="sidebar-toggle" onclick="toggleSidebar()" title="Expandir/ocultar menu" aria-label="Expandir ou ocultar menu">☰</button>
+  <div class="side-title">APRESENTAÇÃO</div><div id="sideNav"></div>
+  <div class="side-section">NAVEGAÇÃO</div><div class="side-nav-buttons"><button class="btn" onclick="prev()">← Anterior</button><button class="btn primary" onclick="next()">Próxima →</button></div>
+  <div class="side-section">PROGRESSO</div><div class="side-progress"><span id="sideProgressLabel">Visão geral</span><div class="bar"><i id="sideProgress"></i></div></div>
+  <div class="data-source-status" id="dataSourceStatus">● Base local carregada</div>
+<div class="side-section">EXIBIÇÃO</div>
+  <button class="btn wide" id="themeToggle" type="button" onclick="toggleVisualMode()">☼ Modo clean</button>
+  <button class="btn wide" onclick="toggleFullscreen()">Tela cheia ⛶</button>
+  <div class="side-brand">Copastur | Cartões & Comissões<br>Reunião Mensal de Resultados</div>
+</aside>
+<div class="content-area">
+<div class="overview" id="overview" style="display:none" aria-hidden="true"></div>
+<main class="main" id="slides"></main>
+</div>
+</div>
+<footer class="footer"><div><span id="slideNo">Visão geral</span> <span id="slideTitle">· Julho/2026 fechado</span></div><div class="nav"><button class="btn" onclick="prev()">←</button><button class="btn" onclick="next()">→</button></div><div class="progress" id="progress"></div></footer>
+</div>
+<div class="modal" id="modal"><div class="modal-box"><button class="btn close" onclick="closeModal()">Fechar</button><div id="modalContent"></div></div></div>
+
+<script>
+const D = {"empresa": "Copastur", "periodoFechado": "Julho/2026", "periodoParcial": "Agosto/2026", "cartoes": {"julho": {"totalTrx": 19446, "copastur": 16376, "copasturCard": 3070, "valor": 34463955.02, "nf": 967, "pendente": 497155.29, "produtos": {"Aéreo": 13685, "Hotel": 5452, "Despesa Direta": 192, "Rodoviário": 64, "Serviços": 32, "Locação": 11, "Fraude": 10}, "identificacao": 99.994, "sla": 99.4, "conciliacao": 99.398, "copasturCardConciliacao": 100, "copasturCardIdentificacao": 100, "copasturCardDentroPrazo": 100}, "agosto": {"totalTrx": 8175, "copastur": 4930, "copasturCard": 3245, "valor": 37031247.4, "nf": 55, "pendente": 199764.44, "produtos": {"Aéreo": 4877, "Hotel": 2541, "Despesa Direta": 472, "Rodoviário": 120, "Serviços": 43, "Locação": 11, "Fraude": 43}}}, "metasCartoes": {"identificacao": 100, "sla": 97, "conciliacao": 97, "label": "Mesmas metas para Cartões Copastur e CopasturCard"}, "comissoes": {"julho": {"emitido": 2187800.77, "recebido": 2046080.47, "meta": 1600000, "inadimplencia": 198894.43, "limite": 200000, "metaProxima": 179004.99, "emAnaliseQtd": 7772, "emAnaliseValor": 2553723.55, "tickets": 437}, "agosto": {"emitido": 738425.73, "recebido": 827608.5, "meta": 1600000}}, "tickets": {"Mariana Cruz": 82, "Oduvaldo Ayrton": 314, "Wagner Bauer": 105, "Lais Flauzino": 59, "Luan Sousa": 0, "Natalia Calaça": 3}, "nps": [{"mes": "Jan/2026", "valor": 90.91, "respostas": 11, "promotores": 10, "neutros": 1, "detratores": 0, "meta": 75}, {"mes": "Fev/2026", "valor": 57.14, "respostas": 14, "promotores": 8, "neutros": 4, "detratores": 2, "meta": 75}, {"mes": "Mar/2026", "valor": 72.73, "respostas": 11, "promotores": 8, "neutros": 1, "detratores": 2, "meta": 75}, {"mes": "Abr/2026", "valor": 80.0, "respostas": 10, "promotores": 8, "neutros": 2, "detratores": 0, "meta": 75}, {"mes": "Mai/2026", "valor": 87.5, "respostas": 8, "promotores": 7, "neutros": 1, "detratores": 0, "meta": 75}, {"mes": "Jun/2026", "valor": 83.33, "respostas": 6, "promotores": 5, "neutros": 1, "detratores": 0, "meta": 75}, {"mes": "Jul/2026", "valor": 100.0, "respostas": 9, "promotores": 9, "neutros": 0, "detratores": 0, "meta": 75}, {"mes": "Ago/2026", "valor": 92, "respostas": 12, "promotores": 11, "neutros": 1, "detratores": 0, "meta": 75}], "pessoas": {"aniversarios": [{"nome": "Thais Bezerra", "data": "28/08"}], "empresa": [{"nome": "Kelly Nascimento", "data": "07/08", "anos": 3}, {"nome": "Marina Scalon Benavente", "data": "07/08", "anos": 9}], "ferias": [{"nome": "Natalia Calaça", "periodo": "05/08 a 26/08/26"}, {"nome": "Sabrina Munis", "periodo": "08/09 a 18/09/26"}, {"nome": "Bruna Araujo", "periodo": "08/09 a 22/09/26"}, {"nome": "Dhebora Regonato", "periodo": "10/08 a 24/08/26"}]}, "equipes": {"cartoes": ["Bruna Araujo", "Dhebora Regonato", "Diogo Alves", "Erika Candiotto", "Kelly Nascimento", "Thais Bezerra"], "comissoes": ["Lais Flauzino", "Laura Costa", "Luan Sousa", "Mariana Cruz", "Natalia Calaça", "Oduvaldo Ayrton", "Wagner Bauer"]}, "statusAtual": {"ccppsEmAnalise": 7594, "valorEmAnalise": 2551808.38, "ticketsEmAberto": 437}, "gestao": {"reconhecimentos": [], "conquistas": [], "melhorias": [], "acoes": []}, "comunicados": [{"tipo":"Calibração","comunicado":"Ainda não finalizada.","data":"","status":"Aguardando"},{"tipo":"Feedback · Cultura & Impacto","comunicado":"Aguardando a informação do período em que serão realizados os feedbacks das avaliações.","data":"","status":"Aguardando período"},{"tipo":"Certificados","comunicado":"Certificados devem ser inclusos no Convênio","data":"","status":"Incluído por cada Colaborador"}], "cartoes12m": [{"mes": "Set/25", "valor": 17247}, {"mes": "Out/25", "valor": 14723}, {"mes": "Nov/25", "valor": 19213}, {"mes": "Dez/25", "valor": 13540}, {"mes": "Jan/26", "valor": 11269}, {"mes": "Fev/26", "valor": 13896}, {"mes": "Mar/26", "valor": 14711}, {"mes": "Abr/26", "valor": 20503}, {"mes": "Mai/26", "valor": 18907}, {"mes": "Jun/26", "valor": 18984}, {"mes": "Jul/26", "valor": 19446}, {"mes": "Ago/26", "valor": 8175}], "comissoes12m": [{"mes": "Set/25", "valor": 1786865.69}, {"mes": "Out/25", "valor": 1907782.87}, {"mes": "Nov/25", "valor": 1720127.74}, {"mes": "Dez/25", "valor": 2010868.75}, {"mes": "Jan/26", "valor": 1705988.09}, {"mes": "Fev/26", "valor": 1546573.04}, {"mes": "Mar/26", "valor": 1575361.0}, {"mes": "Abr/26", "valor": 1553505.33}, {"mes": "Mai/26", "valor": 1927297.94}, {"mes": "Jun/26", "valor": 1956494.8}, {"mes": "Jul/26", "valor": 2187800.77}, {"mes": "Ago/26", "valor": 738425.73, "parcial": true}]};
+const money = v => v.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+function formatDateBR(value){
+  if(value===null||value===undefined||value==='') return '';
+  const raw=String(value).trim();
+  // ISO / Google Sheets timestamp
+  const iso=raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(iso) return `${iso[3]}/${iso[2]}/${iso[1]}`;
+  // dd/mm/yyyy or dd/mm/yy
+  const br=raw.match(/^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/);
+  if(br){
+    const y=br[3].length===2?'20'+br[3]:br[3];
+    return `${br[1].padStart(2,'0')}/${br[2].padStart(2,'0')}/${y}`;
+  }
+  return raw;
+}
+function holidayStartDate(value){
+  const raw=String(value||'');
+  const iso=raw.match(/(\d{4})-(\d{2})-(\d{2})/);
+  if(iso) return new Date(Number(iso[1]),Number(iso[2])-1,Number(iso[3])).getTime();
+  const br=raw.match(/(\d{1,2})\/(\d{1,2})\/(\d{2,4})/);
+  if(br){
+    const y=br[3].length===2?2000+Number(br[3]):Number(br[3]);
+    return new Date(y,Number(br[2])-1,Number(br[1])).getTime();
+  }
+  return Number.MAX_SAFE_INTEGER;
+}
+const PT_MONTHS=['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+const PT_SHORT=['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'];
+function monthKey(value){
+  const raw=String(value||'').trim().toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  // Google Sheets frequentemente entrega datas como ISO: 2026-07-01.
+  const iso=raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(iso){
+    const mi=Number(iso[2])-1;
+    if(mi>=0 && mi<12) return PT_MONTHS[mi].normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+  for(let i=0;i<12;i++){
+    if(raw.includes(PT_MONTHS[i]) || raw.startsWith(PT_SHORT[i])) return PT_MONTHS[i].normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+  const d=raw.match(/(\d{1,2})[\/-](\d{1,2})[\/-](\d{2,4})/);
+  if(d){
+    const mi=Number(d[2])-1;
+    if(mi>=0 && mi<12) return PT_MONTHS[mi].normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+  }
+  return null;
+}
+function monthIndex(value){
+  const k=monthKey(value); return k?PT_MONTHS.findIndex(x=>x.normalize('NFD').replace(/[\u0300-\u036f]/g,'')===k):-1;
+}
+function monthYear(value){
+  const raw=String(value||'').trim();
+  const iso=raw.match(/^(\d{4})-(\d{2})-(\d{2})/);
+  if(iso) return {year:Number(iso[1]),month:Number(iso[2])-1};
+  const br=raw.match(/(?:^|\D)(\d{1,2})[\/-](\d{1,2})[\/-](\d{2,4})(?:\D|$)/);
+  if(br) return {year:br[3].length===2?2000+Number(br[3]):Number(br[3]),month:Number(br[2])-1};
+  const mi=monthIndex(raw); if(mi>=0){ const y=(raw.match(/20\d{2}/)||[])[0]; return {year:y?Number(y):null,month:mi}; }
+  return null;
+}
+function currentMonthInfo(){const d=new Date();return {year:d.getFullYear(),month:d.getMonth()};}
+function periodKeyFromLabel(label){
+  const mi=monthIndex(label); if(mi<0) return null;
+  const y=(String(label||'').match(/20\d{2}/)||[])[0];
+  return {key:PT_MONTHS[mi].normalize('NFD').replace(/[\u0300-\u036f]/g,''),year:y?Number(y):null,month:mi};
+}
+function periodoFormatado(label){
+  const p=periodKeyFromLabel(label);
+  if(!p) return String(label||'');
+  const ano=p.year || currentMonthInfo().year;
+  return PT_MONTHS[p.month].replace(/^./,c=>c.toUpperCase())+'/'+ano;
+}
+function getClosedKey(){return periodKeyFromLabel(D.periodoFechado)?.key || 'julho';}
+function getPartialKey(){return periodKeyFromLabel(D.periodoParcial)?.key || 'agosto';}
+function getClosedData(area){return D[area]?.[getClosedKey()] || D[area]?.julho || {};}
+function getPartialData(area){return D[area]?.[getPartialKey()] || D[area]?.agosto || {};}
+function latestNpsClosed(){
+  const target=periodKeyFromLabel(D.periodoFechado);
+  if(!target || !D.nps?.length) return D.nps?.[D.nps.length-1]||{};
+  return D.nps.find(x=>{const p=periodKeyFromLabel(x.mes);return p&&p.key===target.key&&(!target.year||!p.year||p.year===target.year)}) || D.nps[D.nps.length-1] || {};
+}
+function latestNpsCurrent(){return D.nps?.[D.nps.length-1]||{};}
+function currentPeriodText(){const d=currentMonthInfo();return PT_MONTHS[d.month].replace(/^./,c=>c.toUpperCase())+'/'+d.year;}
+function filterPeopleByPeriod(){
+  const now=currentMonthInfo();
+  const nextMonth=(now.month+1)%12, nextYear=now.month===11?now.year+1:now.year;
+  const people=D.pessoas||{};
+  const monthOf=x=>monthIndex(x?.data);
+  const aniversarios=(people.aniversarios||[]).filter(x=>monthOf(x)===now.month).sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+  const empresa=(people.empresa||[]).filter(x=>monthOf(x)===now.month).sort((a,b)=>String(a.data).localeCompare(String(b.data)));
+  const ferias=(people.ferias||[]).filter(x=>{
+    const st=holidayStartDate(x.periodo); const raw=String(x.periodo||'');
+    const m=raw.match(/(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/); if(!m) return false;
+    const y=m[3]?Number(m[3].length===2?'20'+m[3]:m[3]):(monthIndex(raw)===nextMonth?nextYear:now.year);
+    const start=new Date(y,Number(m[2])-1,Number(m[1]));
+    const endMatch=[...raw.matchAll(/(\d{1,2})\/(\d{1,2})(?:\/(\d{2,4}))?/g)].pop();
+    let end=start; if(endMatch && endMatch!==m){let ey=endMatch[3]?Number(endMatch[3].length===2?'20'+endMatch[3]:endMatch[3]):y; end=new Date(ey,Number(endMatch[2])-1,Number(endMatch[1]));}
+    const currentStart=new Date(now.year,now.month,1), nextEnd=new Date(nextYear,nextMonth+1,0,23,59,59);
+    return end>=currentStart && start<=nextEnd;
+  }).sort((a,b)=>holidayStartDate(a.periodo)-holidayStartDate(b.periodo));
+  return {aniversarios,empresa,ferias};
+}
+
+const num = v => Number(v).toLocaleString('pt-BR');
+const pct = v => Number(v).toFixed(2).replace('.',',')+'%';
+const pp = v => (v>=0?'+':'')+Number(v).toFixed(2).replace('.',',')+' pts';
+const slides = [
+['Capa',()=>`<section class="slide active hero"><div class="hero-inner">
+<div class="hero-logo">COPASTUR</div><div class="hero-line"></div>
+<div class="kicker">Reunião mensal de resultados</div><h1 class="title">Cartões &<br>Comissões</h1>
+<p class="subtitle">Performance, indicadores, pessoas e próximos passos — com inteligência analítica e apoio de IA.</p>
+<div class="hero-meta"><span>FECHAMENTO · JULHO/2026</span><span>ACOMPANHAMENTO · AGOSTO/2026</span></div>
+<div style="margin-top:32px"><button class="btn primary start-presentation" id="startPresentationBtn" type="button" onclick="return startPresentation(event)" aria-label="Iniciar apresentação">▶ Iniciar apresentação</button></div>
+</div></section>`],
+['Agenda',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Roteiro</div><h2 class="title">Agenda</h2><p class="subtitle">Uma jornada de resultados à evolução.</p></div><div class="period">16 telas<br><strong>visão executiva + exploração</strong></div></div>
+<div class="card agenda">${[['Visão geral','O mês em 60 segundos'],['Cartões','Volume, produtos, qualidade e SLA'],['Comissões','Emissão, recebimento, inadimplência e validação'],['Evolução','Histórico, metas e tendências'],['Pessoas','NPS, reconhecimento e datas importantes'],['Gestão','Conquistas, pontos de atenção e plano de ação'],['IA','Disponível pelo botão IA Insights']].map((x,i)=>`<div class="item" onclick="go(${i+2})"><div class="num">${String(i+1).padStart(2,'0')}</div><div><strong>${x[0]}</strong><span>${x[1]}</span></div></div>`).join('')}</div></section>`],
+['Executive Summary',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Visão executiva</div><h2 class="title">O mês em 60 segundos</h2></div><div class="period">Fechado<strong>Julho/2026</strong><span>Agosto · parcial</span></div></div>
+<div class="grid g4">
+<div class="card kpi-card"><div class="label">Cartões · transações</div><div class="kpi">${num(getClosedData('cartoes').totalTrx)}</div><div class="delta blue">${num(getClosedData('cartoes').copastur)} Copastur · ${num(getClosedData('cartoes').copasturCard)} CopasturCard</div></div>
+<div class="card kpi-card"><div class="label">Cartões · valor</div><div class="kpi">${money(getClosedData('cartoes').valor)}</div><div class="delta">Processado no fechamento</div></div>
+<div class="card kpi-card"><div class="label">Comissões · emissão</div><div class="kpi">${money(getClosedData('comissoes').emitido)}</div><div class="delta good">${pct(getClosedData('comissoes').emitido/getClosedData('comissoes').meta*100)} da meta</div></div>
+<div class="card kpi-card"><div class="label">NPS · gestão Marina</div><div class="kpi">${num(D.npsFechado ?? D.npsAtual ?? 100)}</div><div class="delta good">${D.periodoFechado} · meta ${num(D.npsMeta ?? 75)}</div></div>
+</div>
+<div class="grid g2" style="margin-top:16px">
+<div class="card"><h3>Meta & qualidade</h3><div class="metric-row"><strong>Identificação</strong><span class="good">${pct(getClosedData('cartoes').identificacao)}</span></div><div class="bar"><i style="width:${getClosedData('cartoes').identificacao}%"></i></div><div class="metric-row"><strong>SLA</strong><span class="good">${pct(getClosedData('cartoes').sla)}</span></div><div class="bar"><i style="width:${getClosedData('cartoes').sla}%"></i></div></div>
+<div class="card"><h3>Principal ponto de atenção</h3><div class="value">${money(D.statusAtual?.valorEmAnalise ?? 0)}</div><p class="small">${num(D.statusAtual?.ccppsEmAnalise ?? 0)} CCPPs em análise · aguardando validação.</p><div class="callout warn">Inadimplência: <strong>${money(getClosedData('comissoes').inadimplencia)}</strong> · limite ${money(getClosedData('comissoes').limite)}</div></div>
+</div></section>`],
+['Cartões · Visão Geral',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Cartões</div><h2 class="title">Visão geral</h2></div><div class="period">Julho/2026<strong>Fechado</strong></div></div>
+<div class="tabs"><button class="tab active" onclick="cardMode('consolidado',this)">Consolidado</button><button class="tab" onclick="cardMode('copastur',this)">Cartões Copastur</button><button class="tab" onclick="cardMode('card',this)">CopasturCard</button></div>
+<div id="cardExec" class="grid g4"></div>
+<div class="grid g2" style="margin-top:16px"><div class="card" id="cardQualityConc"><h3>Conciliação · resultado</h3><div class="big-number" id="cardConcResult">—</div><div class="metric-row"><span>Meta</span><strong class="warn" id="cardConcMeta">—</strong></div><span class="pill" id="cardConcGap">—</span></div><div class="card" id="cardQualitySla"><h3>Conciliação no SLA</h3><div class="big-number" id="cardSlaResult">—</div><span class="pill" id="cardSlaMeta">—</span></div></div></section>`],
+['Cartões · Volume & Produtos',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Cartões</div><h2 class="title">Volume & produtos</h2></div><div class="period">Julho/2026<strong>Fechado</strong></div></div>
+<div class="tabs"><button class="tab active" onclick="volumeMode('consolidado',this)">Consolidado</button><button class="tab" onclick="volumeMode('copastur',this)">Cartões Copastur</button><button class="tab" onclick="volumeMode('card',this)">CopasturCard</button></div>
+<div id="volumeExec" class="grid g4"></div>
+<div class="card" style="margin-top:16px"><h3>Distribuição por produto</h3><div class="product-chart" id="prodChart"></div></div>
+</section>`],
+['Cartões · Qualidade & SLA',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Cartões</div><h2 class="title">Qualidade & SLA</h2></div><div class="period">Julho/2026<strong>Fechado</strong></div></div>
+<div class="grid g2"><div class="card"><h3>Identificação</h3><div class="big-number">${pct(getClosedData('cartoes').identificacao)}</div><div class="metric-row"><span>Gap para 100%</span><strong class="warn">-0,01 p.p.</strong></div><span class="pill warn">Próximo da meta</span></div>
+<div class="card"><h3>Conciliação em até 7 dias</h3><div class="big-number">${pct(getClosedData('cartoes').sla)}</div><div class="metric-row"><span>Meta</span><strong class="good">≥ ${pct(D.metasCartoes.sla)}</strong></div><span class="pill good">Meta atingida · +2,40 pts</span></div></div>
+<div class="grid g2" style="margin-top:16px"><div class="card"><h3>Pendente de conciliação</h3><div class="value">${money(getClosedData('cartoes').pendente)}</div><p class="small">Valor pendente no fechamento.</p></div><div class="card"><h3>Agosto · parcial</h3><div class="value">${num(getPartialData('cartoes').totalTrx)} TRX</div><p class="small">${money(getPartialData('cartoes').pendente)} pendente · ${num(getPartialData('cartoes').nf)} NF</p><span class="pill">Mês em andamento</span></div></div></section>`],
+['Comissões · Visão Geral',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Comissões</div><h2 class="title">Visão geral</h2></div><div class="period">Julho/2026<strong>Fechado</strong></div></div>
+<div class="grid g4">
+<div class="card kpi-card"><h3>CCPP emitidos</h3><div class="kpi">${money(getClosedData('comissoes').emitido)}</div><div class="good">${pct(getClosedData('comissoes').emitido/getClosedData('comissoes').meta*100)} da meta</div></div>
+<div class="card kpi-card"><h3>CCPP recebidos</h3><div class="kpi">${money(getClosedData('comissoes').recebido)}</div><div class="small">Valor recebido</div></div>
+<div class="card kpi-card"><h3>Inadimplência</h3><div class="kpi">${money(getClosedData('comissoes').inadimplencia)}</div><div class="good">Dentro do limite</div></div>
+<div class="card kpi-card"><h3>Em análise</h3><div class="kpi">${num(D.statusAtual?.ccppsEmAnalise ?? 0)}</div><div class="small">${money(D.statusAtual?.valorEmAnalise ?? 0)}</div></div>
+</div>
+<div class="grid g2" style="margin-top:16px"><div class="card"><h3>Meta de emissão</h3><div class="metric-row"><span>Realizado</span><strong>${money(getClosedData('comissoes').emitido)}</strong></div><div class="bar"><i style="width:100%"></i></div><div class="metric-row"><span>Meta</span><strong>${money(getClosedData('comissoes').meta)}</strong></div><span class="pill good">+${money(getClosedData('comissoes').emitido-getClosedData('comissoes').meta)} acima da meta</span></div>
+<div class="card"><h3>Próximo desafio</h3><div class="value">${money(getClosedData('comissoes').metaProxima)}</div><p class="small">Meta de inadimplência para o próximo ciclo · redução de 10%.</p></div></div></section>`],
+['Comissões · Fluxo & Recebimento',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Comissões</div><h2 class="title">Fluxo & recebimento</h2></div><div class="period">Indicadores independentes<strong>sem equivalência matemática</strong></div></div>
+<div class="grid g3"><div class="card"><h3>Emissão</h3><div class="value">${money(getClosedData('comissoes').emitido)}</div><span class="pill good">136,74% da meta</span></div><div class="card"><h3>Recebimento</h3><div class="value">${money(getClosedData('comissoes').recebido)}</div><span class="pill">Julho</span></div><div class="card"><h3>Inadimplência</h3><div class="value">${money(getClosedData('comissoes').inadimplencia)}</div><span class="pill good">limite ${money(getClosedData('comissoes').limite)}</span></div></div>
+<div class="grid g2" style="margin-top:16px"><div class="card"><h3>Validação</h3><div class="big-number">${num(D.statusAtual?.ccppsEmAnalise ?? 0)}</div><p class="small">${money(D.statusAtual?.valorEmAnalise ?? 0)} em CCPPs com status <strong>Em análise</strong>.</p></div>
+<div class="card"><h3>Tickets em aberto</h3><div class="big-number">${num(D.statusAtual?.ticketsEmAberto ?? 0)}</div><div class="list">${Object.entries(D.tickets).map(([n,v])=>`<div class="list-item"><span>${n}</span><strong>${num(v)}</strong></div>`).join('')}</div></div></div></section>`],
+['Evolução · 12 Meses',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Tendência</div><h2 class="title">Evolução · 12 meses</h2><p class="subtitle">Visão transversal. Agosto permanece identificado como parcial.</p></div></div>
+<div class="tabs"><button class="tab active" onclick="trend('cartoes',this)">Cartões · TRX</button><button class="tab" onclick="trend('emissao',this)">Comissões · Emissão</button></div>
+<div class="card"><div class="trend-chart" id="trendChart"></div></div></section>`],
+['Pessoas & Cultura',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Pessoas</div><h2 class="title">Pessoas & Cultura</h2><p class="subtitle">Resultados também são construídos por pessoas.</p></div><div class="period">Gestão<strong>Marina Scalon Benavente</strong></div></div>
+<div class="grid g2"><div class="card"><h3>❤️ NPS · Cartões & Comissões</h3><div class="big-number">${num(D.npsAtual ?? 0)}</div><div class="good">Meta ${num(D.npsAtualMeta ?? 75)}</div><p class="small">${latestNpsCurrent().mes || D.periodoParcial} · ${num(latestNpsCurrent().respostas||0)} respostas · ${num(latestNpsCurrent().promotores||0)} promotoras · ${num(latestNpsCurrent().neutros||0)} neutras · ${num(latestNpsCurrent().detratores||0)} detratoras</p></div><div class="card"><h3>📈 Evolução NPS 2026</h3><div class="trend-chart" id="npsChart"></div></div></div>
+<div class="card" style="margin-top:16px"><h3>⭐ Destaques do mês</h3><div class="grid g3">${['resultado','colaboracao','evolucao'].map((tipo,i)=>{const icons=['🎯','🤝','🚀'];const labels=['Resultado','Colaboração','Evolução'];const item=(D.gestao?.reconhecimentos||[]).find(x=>normalizarChave(x.tipoOriginal||'').includes(tipo));return `<div class="callout"><strong>${icons[i]} ${labels[i]}</strong><br><span class="small">${item ? ((item.pessoa?'<b>'+item.pessoa+'</b> · ':'')+(item.titulo||item.descricao||'Reconhecimento registrado.')) : 'Nenhum reconhecimento preenchido para o ciclo.'}</span>${item&&item.descricao&&item.titulo?`<br><span class="small">${item.descricao}</span>`:''}</div>`}).join('')}</div></div></section>`],
+['Conquistas & Melhorias',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Gestão</div><h2 class="title">Conquistas & melhorias</h2><p class="subtitle">Da execução à evolução.</p></div><div class="period">${periodoFormatado(D.periodoParcial)}<strong>Atualização do ciclo</strong></div></div>
+<div class="grid g2"><div class="card"><h3>🏆 Conquistas</h3><div class="list">${(D.gestao?.conquistas||[]).map(x=>`<div class="list-item"><span><strong>${x.titulo||'Conquista'}</strong><small style="display:block;color:var(--muted)">${x.pessoa?x.pessoa+' · ':''}${x.descricao||''}</small></span></div>`).join('')||'<p class="small">Nenhuma conquista preenchida para o ciclo.</p>'}</div></div>
+<div class="card"><h3>💡 Melhorias</h3><div class="list">${(D.gestao?.melhorias||[]).map(x=>`<div class="list-item"><span><strong>${x.titulo||'Melhoria'}</strong><small style="display:block;color:var(--muted)">${x.pessoa?x.pessoa+' · ':''}${x.descricao||''}</small></span></div>`).join('')||'<p class="small">Nenhuma melhoria preenchida para o ciclo.</p>'}</div></div></div></section>`],
+['Pontos de Atenção',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Gestão</div><h2 class="title">Pontos de atenção</h2><p class="subtitle">O que acompanhar, corrigir ou melhorar.</p></div></div>
+<div class="grid g2"><div class="card"><span class="pill warn">🟠 ATENÇÃO</span><h2>Pendências de validação</h2><div class="value">${num(D.statusAtual?.ccppsEmAnalise ?? 0)} CCPPs</div><p class="small">${money(D.statusAtual?.valorEmAnalise ?? 0)} aguardando validação.</p></div>
+<div class="card"><span class="pill warn">🟠 ATENÇÃO</span><h2>Inadimplência</h2><div class="value">${money(getClosedData('comissoes').inadimplencia)}</div><p class="small">Apenas ${money(getClosedData('comissoes').limite-getClosedData('comissoes').inadimplencia)} abaixo do limite. Próxima meta: ${money(getClosedData('comissoes').metaProxima)}.</p></div>
+<div class="card"><span class="pill warn">🟠 ATENÇÃO</span><h2>Tickets</h2><div class="value">${num(D.statusAtual?.ticketsEmAberto ?? 0)}</div><p class="small">Volume atual. Distribuição deve ser lida como capacidade operacional, não ranking.</p></div>
+<div class="card"><span class="pill warn">🟡 ATENÇÃO</span><h2>Valor pendente de identificação</h2><div class="value">${money(getClosedData('cartoes').pendente)}</div><p class="small">Valor em aberto aguardando identificação e finalização da conciliação.</p></div></div>
+<div class="callout" style="margin-top:16px">A causa de cada divergência será preenchida pela gestão quando houver evidência. A IA não inventa causalidade.</div></section>`],['Plano de Ação',()=>`<section class="slide"><div class="section-head"><div><div class="kicker">Gestão</div><h2 class="title">Plano de ação</h2><p class="subtitle">Acompanhamento alimentado pela base de gestão.</p></div></div>
+<div class="card"><h3>Ações do ciclo</h3><table><thead><tr><th>Ação</th><th>Responsável</th><th>Prazo</th><th>Status</th></tr></thead><tbody>${(D.gestao?.acoes||[]).map(x=>`<tr><td>${x.titulo}</td><td>${x.pessoa||'—'}</td><td>${x.prazo||'—'}</td><td>${statusPill(x.status)}</td></tr>`).join('')||'<tr><td colspan="4">Nenhuma ação cadastrada para o ciclo.</td></tr>'}</tbody></table></div></section>`],
+['Datas Importantes',()=>`<section class="slide people-slide"><div class="section-head"><div><div class="kicker">Pessoas</div><h2 class="title">Vale a pena dar uma olhada 👀</h2><p class="subtitle">Vamos comemorar, reconhecer e ficar de olho no que vem por aí.</p></div><div class="period">${currentPeriodText()}<strong>Próximos acontecimentos</strong></div></div>
+<div class="card"><h3>🎂 Vamos comemorar</h3><div class="grid g2">${D.pessoasFiltradas.aniversarios.map(x=>`<div class="callout"><strong>${x.nome}</strong><br><span class="blue">${formatDateBR(x.data)}</span></div>`).join('')}</div></div>
+<div class="grid g2" style="margin-top:16px"><div class="card"><h3>🎖️ Celebrando nossa jornada</h3><div class="list">${D.pessoasFiltradas.empresa.map(x=>`<div class="list-item"><span>${x.nome}<small style="display:block;color:var(--muted);font-size:11px;margin-top:3px">${x.anos} ${x.anos===1?'ano':'anos'} de Copastur</small></span><strong>${formatDateBR(x.data)}</strong></div>`).join('')}</div></div>
+<div class="card"><h3>🏖️ Próximas férias</h3><div class="list">${D.pessoasFiltradas.ferias.slice().sort((a,b)=>holidayStartDate(a.periodo)-holidayStartDate(b.periodo)).map(x=>`<div class="list-item"><span>${x.nome}</span><strong>${formatDateBR(x.periodo)}</strong></div>`).join('')}</div></div></div>
+<div class="card" style="margin-top:16px"><h3>📢 Comunicados & lembretes</h3>
+<div id="comunicadosList" class="list comunicados-list">
+<div class="list-item"><span><strong>Calibração</strong><small style="display:block;color:var(--muted);font-size:11px;margin-top:3px">Ainda não finalizada.</small></span><span class="pill warn">Aguardando</span></div>
+<div class="list-item"><span><strong>Feedback · Cultura & Impacto</strong><small style="display:block;color:var(--muted);font-size:11px;margin-top:3px">Aguardando a informação do período em que serão realizados os feedbacks das avaliações.</small></span><span class="pill warn">Aguardando período</span></div>
+<div class="list-item"><span><strong>Certificados</strong><small style="display:block;color:var(--muted);font-size:11px;margin-top:3px">Certificados devem ser inclusos no Convênio</small></span><span class="pill good">Incluído por cada Colaborador</span></div>
+</div>
+</div></section>`],
+['Encerramento',()=>`<section class="slide hero"><div class="hero-inner"><div class="kicker">Encerramento</div><h1 class="title">Continuamos<br>evoluindo.</h1><p class="subtitle">Julho entregue.<br>Agosto em construção.<br>Próximo ciclo, ainda melhor.</p><div class="hero-line"></div><div class="grid g3"><div><div class="kicker">Foco</div><p>Prioridades claras e acompanhamento.</p></div><div><div class="kicker">Evolução</div><p>Processos mais inteligentes.</p></div><div><div class="kicker">Time</div><p>Resultados construídos juntos.</p></div></div><div style="margin-top:28px"><button class="btn primary" onclick="go(0)">↻ Voltar ao início</button></div></div></section>`]
+];
+
+
+function setVisualMode(mode){
+  const clean=mode==='clean';
+  document.body.classList.toggle('clean-mode',clean);
+  const btn=document.getElementById('themeToggle');
+  if(btn){
+    btn.textContent=clean?'☾ Modo dark':'☼ Modo clean';
+    btn.title=clean?'Voltar ao modo escuro':'Usar modo clean';
+  }
+  localStorage.setItem('copastur_visual_mode',mode);
+}
+function toggleVisualMode(){
+  setVisualMode(document.body.classList.contains('clean-mode')?'dark':'clean');
+}
+
+const SHEETS_API = "https://script.google.com/macros/s/AKfycbxIgaKSaYDSjDMohB7o2TYXPVNDaFcgwMbpk6qJ96ux91WQLWpgz_s1cQSnkgBKrYbJ/exec";
+
+function normalizarChave(v){
+  return String(v||'')
+    .normalize('NFD').replace(/[\u0300-\u036f]/g,'')
+    .toLowerCase().replace(/[^a-z0-9]+/g,'');
+}
+
+function statusPill(status){
+  const raw=String(status||'Sem status').trim();
+  const key=normalizarChave(raw);
+  let cls='';
+  if(key.includes('aguard')) cls='status-aguardando';
+  else if(key.includes('conclu') || key.includes('finaliz')) cls='status-concluido';
+  else if(key.includes('andamento') || key.includes('execu')) cls='status-andamento';
+  else if(key.includes('planej')) cls='status-planejado';
+  else if(key.includes('atras') || key.includes('vencid')) cls='status-atrasado';
+  return `<span class="pill ${cls}">${raw}</span>`;
+}
+
+function temDados(obj){
+  return obj && typeof obj === 'object' && Object.values(obj).some(v =>
+    Array.isArray(v) ? v.length > 0 : (v && typeof v === 'object' ? temDados(v) : v !== '' && v != null)
+  );
+}
+
+function valorLinha(row, aliases){
+  const keys=Object.keys(row||{});
+  for(const alias of aliases){
+    const a=normalizarChave(alias);
+    const k=keys.find(x=>normalizarChave(x)===a);
+    if(k!==undefined && row[k]!=='' && row[k]!=null) return row[k];
+  }
+  return null;
+}
+
+function numero(v){
+  if(typeof v==='number') return v;
+  if(v==null || v==='') return 0;
+  let x=String(v).trim().replace(/R\\$\\s?/g,'');
+  if(x.includes(',') && x.includes('.')) x=x.replace(/\\./g,'').replace(',','.');
+  else if(x.includes(',')) x=x.replace(',','.');
+  const n=Number(x.replace(/[^0-9.-]/g,''));
+  return isNaN(n)?0:n;
+}
+
+function aplicarBaseGoogle(remote){
+  let alterou=false;
+
+  const controle=remote.controle||[];
+  const cartoes=remote.cartoes||[];
+  const produtos=remote.cartoes_produtos||[];
+  const comissoes=remote.comissoes||[];
+  const nps=remote.nps||[];
+  const pessoas=remote.pessoas||[];
+  const metas=remote.metas||[];
+  const ticketsBase=remote.tickets||[];
+  const comunicadosBase=Array.isArray(remote.comunicados)?remote.comunicados:[]; window.__remoteComunicados=comunicadosBase.slice();
+
+  const chaveMes=v=>monthKey(v);
+
+  // CONTROLE
+  if(controle.length){
+    const fechado=valorLinha(controle[0],['Último mês fechado','Ultimo mes fechado','Mês fechado','Mes fechado']);
+    const parcial=valorLinha(controle[0],['Mês parcial','Mes parcial']);
+    if(fechado) D.periodoFechado=periodoFormatado(fechado);
+    if(parcial) D.periodoParcial=periodoFormatado(parcial);
+    D.periodoFechadoKey=getClosedKey();
+    D.periodoParcialKey=getPartialKey();
+    alterou=true;
+  }
+
+  // CARTÕES — consolida mensal, Copastur x CopasturCard e qualidade.
+  if(cartoes.length){
+    const grupos={};
+    cartoes.forEach(r=>{
+      const mes=chaveMes(valorLinha(r,['Mês','Mes','Competência','Competencia']));
+      if(!mes) return;
+      const produto=String(valorLinha(r,['Produto','Produto financeiro'])||'Consolidado').toLowerCase();
+      grupos[mes] ||= {};
+      grupos[mes][produto]=r;
+    });
+
+    Object.entries(grupos).forEach(([mes,rows])=>{
+      const base=D.cartoes[mes] || {};
+      const cons=rows.consolidado || rows['consolidado'];
+      const cp=rows.copastur;
+      const cc=rows.copasturcard;
+
+      if(cons){
+        const trx=numero(valorLinha(cons,['Transações','Transacoes','TRX','Quantidade']));
+        const valor=numero(valorLinha(cons,['Valor processado','Valor']));
+        const nf=numero(valorLinha(cons,['NF capturadas','NF','NFs']));
+        const id=numero(valorLinha(cons,['Identificação %','Identificacao %','Identificação','Identificacao']));
+        const conc=numero(valorLinha(cons,['Conciliação %','Conciliacao %','Conciliação','Conciliacao']));
+        const sla=numero(valorLinha(cons,['SLA %','SLA']));
+        const pend=numero(valorLinha(cons,['Valor pendente de identificação','Pendente de identificação','Pendente']));
+        if(trx) base.totalTrx=trx;
+        if(valor) base.valor=valor;
+        if(nf) base.nf=nf;
+        if(id) base.identificacao=id;
+        if(conc) base.conciliacao=conc;
+        if(sla) base.sla=sla;
+        if(pend) base.pendente=pend;
+      }
+      if(cp){
+        const trx=numero(valorLinha(cp,['Transações','Transacoes','TRX','Quantidade']));
+        const valor=numero(valorLinha(cp,['Valor processado','Valor']));
+        const nf=numero(valorLinha(cp,['NF capturadas','NF','NFs']));
+        if(trx) base.copastur=trx;
+        if(valor) base.copasturValor=valor;
+        if(nf) base.copasturNf=nf;
+      }
+      if(cc){
+        const trx=numero(valorLinha(cc,['Transações','Transacoes','TRX','Quantidade']));
+        const valor=numero(valorLinha(cc,['Valor processado','Valor']));
+        const nf=numero(valorLinha(cc,['NF capturadas','NF','NFs']));
+        const id=numero(valorLinha(cc,['Identificação %','Identificacao %','Identificação','Identificacao']));
+        const conc=numero(valorLinha(cc,['Conciliação %','Conciliacao %','Conciliação','Conciliacao']));
+        const sla=numero(valorLinha(cc,['SLA %','SLA']));
+        if(trx) base.copasturCard=trx;
+        if(valor) base.copasturCardValor=valor;
+        if(nf) base.copasturCardNf=nf;
+        if(id) base.copasturCardIdentificacao=id;
+        if(conc) base.copasturCardConciliacao=conc;
+        if(sla) base.copasturCardDentroPrazo=sla;
+      }
+      D.cartoes[mes]=Object.assign({},D.cartoes[mes]||{},base);
+      alterou=true;
+    });
+
+    const serie=cartoes.map(r=>({
+      mes:String(valorLinha(r,['Mês','Mes','Competência','Competencia'])||'').trim(),
+      valor:numero(valorLinha(r,['Transações','Transacoes','TRX','Quantidade']))
+    })).filter(x=>x.mes && x.valor);
+    if(serie.length){
+      D.cartoes12m=serie;
+      alterou=true;
+    }
+  }
+
+  // DISTRIBUIÇÃO POR PRODUTO
+  if(produtos.length){
+    const porMes={};
+    produtos.forEach(r=>{
+      const mes=chaveMes(valorLinha(r,['Mês','Mes','Competência','Competencia']));
+      const pfRaw=String(valorLinha(r,['Produto financeiro','Produto','Tipo'])||'Consolidado');
+      const pfKey=normalizarChave(pfRaw).replace(/\s+/g,'');
+      const pf=pfKey.includes('copasturcard') ? 'CopasturCard' : (pfKey.includes('copastur') ? 'Copastur' : 'Consolidado');
+      if(!mes) return;
+      porMes[mes] ||= {};
+      porMes[mes][pf]={
+        Aéreo:numero(valorLinha(r,['Aéreo'])),
+        Hotel:numero(valorLinha(r,['Hotel','Terrestre'])),
+        'Locação':numero(valorLinha(r,['Locação','Locacao'])),
+        'Serviços':numero(valorLinha(r,['Serviços','Servicos'])),
+        'Despesa Direta':numero(valorLinha(r,['Despesa Direta'])),
+        'Fraude':numero(valorLinha(r,['Fraude'])),
+        'Rodoviário':numero(valorLinha(r,['Rodoviário','Rodoviario']))
+      };
+    });
+    Object.entries(porMes).forEach(([mes,prod])=>{
+      D.cartoes[mes]=D.cartoes[mes]||{};
+      if(prod.Consolidado) D.cartoes[mes].produtos=prod.Consolidado;
+      D.cartoes[mes].produtosPorProduto=prod;
+    });
+    alterou=true;
+  }
+
+  // COMISSÕES — mensais apenas para emissão/recebimento/inadimplência.
+  // CCPPs em análise, valor em análise e tickets são posição atual, não competência mensal.
+  if(comissoes.length){
+    const serie=[]; let latest={year:0,month:-1,row:null};
+    comissoes.forEach(r=>{
+      const mesTxt=String(valorLinha(r,['Mês','Mes','Competência','Competencia'])||'').trim();
+      const mes=chaveMes(mesTxt);
+      const emitido=numero(valorLinha(r,['Valor emitido','Emitido','Emissão','Emissao']));
+      const recebido=numero(valorLinha(r,['Valor recebido','Recebido']));
+      const inad=numero(valorLinha(r,['Inadimplência','Inadimplencia']));
+      const qtd=numero(valorLinha(r,['CCPPs em análise','CCPPs em analise']));
+      const valAnalise=numero(valorLinha(r,['Valor em análise','Valor em analise']));
+      const tickets=numero(valorLinha(r,['Tickets em aberto','Tickets']));
+      const py=monthYear(mesTxt);
+      if(py && (py.year||0)>latest.year || (py && (py.year||0)===latest.year && py.month>latest.month)) latest={year:py.year||0,month:py.month,row:r};
+      if(emitido) serie.push({mes:mesTxt,valor:emitido,parcial:mes===getPartialKey()});
+      if(mes){
+        D.comissoes[mes]=Object.assign({},D.comissoes[mes]||{}, {emitido:emitido||D.comissoes[mes]?.emitido, recebido:recebido||D.comissoes[mes]?.recebido, inadimplencia:inad||D.comissoes[mes]?.inadimplencia, meta:D.comissoes[mes]?.meta||1600000});
+      }
+      if(qtd || valAnalise || tickets) D.statusAtual=Object.assign({},D.statusAtual,{ccppsEmAnalise:qtd||D.statusAtual?.ccppsEmAnalise,valorEmAnalise:valAnalise||D.statusAtual?.valorEmAnalise,ticketsEmAberto: tickets||D.statusAtual?.ticketsEmAberto});
+    });
+    if(serie.length){D.comissoes12m=serie;alterou=true;}
+  }
+  // Prefer explicit STATUS_ATUAL data when Apps Script provides it.
+  if(Array.isArray(remote.status_atual) && remote.status_atual.length){
+    const st={...D.statusAtual};
+    remote.status_atual.forEach(r=>{
+      const ind=normalizarChave(valorLinha(r,['Indicador','Nome','Campo']));
+      const val=numero(valorLinha(r,['Valor','Quantidade']));
+      if(ind.includes('ccpp')&&ind.includes('analise')) st.ccppsEmAnalise=val;
+      if(ind.includes('valor')&&ind.includes('analise')) st.valorEmAnalise=val;
+      if(ind.includes('ticket')) st.ticketsEmAberto=val;
+    });
+    D.statusAtual=st; alterou=true;
+  }
+
+  // NPS — exclusivamente Marina Benavente; meta 75.
+  const npsMarina=nps.filter(r=>{
+    const resp=String(valorLinha(r,['Responsável','Responsavel','Gestão','Gestao'])||'').toLowerCase();
+    return resp.includes('marina') && resp.includes('benavente');
+  });
+  if(npsMarina.length){
+    const serie=npsMarina.map(r=>({
+      mes:String(valorLinha(r,['Mês','Mes','Competência','Competencia'])||'').trim(),
+      valor:numero(valorLinha(r,['NPS','Pontuação','Pontuacao','Resultado'])),
+      respostas:numero(valorLinha(r,['Quantidade de respostas','Respostas','Quantidade'])),
+      promotores:numero(valorLinha(r,['Promotores','Promotoras'])),
+      neutros:numero(valorLinha(r,['Neutros','Neutras'])),
+      detratores:numero(valorLinha(r,['Detratores','Detratoras'])),
+      meta:numero(valorLinha(r,['Meta','Objetivo'])) || 75
+    })).filter(x=>x.mes);
+    if(serie.length){ D.nps=serie; alterou=true; }
+  }
+
+  // PESSOAS
+  if(pessoas.length){
+    const aniversarios=[],empresa=[],ferias=[];
+    pessoas.forEach(r=>{
+      const nome=valorLinha(r,['Nome','Colaborador']);
+      if(!nome) return;
+      const nasc=valorLinha(r,['Data de nascimento','Nascimento','Aniversário','Aniversario']);
+      const entrada=valorLinha(r,['Data de entrada','Admissão','Admissao','Entrada']);
+      const anos=numero(valorLinha(r,['Anos de empresa','Anos','Tempo de empresa']));
+      const fer=valorLinha(r,['Férias','Ferias','Período de férias','Periodo de ferias']);
+      const status=String(valorLinha(r,['Status','Situação','Situacao'])||'').toLowerCase();
+      if(status.includes('inativ')) return;
+      if(nasc) aniversarios.push({nome:String(nome),data:String(nasc)});
+      if(entrada && anos) empresa.push({nome:String(nome),data:String(entrada),anos});
+      if(fer) ferias.push({nome:String(nome),periodo:String(fer)});
+    });
+    if(aniversarios.length || empresa.length || ferias.length){
+      D.pessoas={aniversarios,empresa,ferias};
+      alterou=true;
+    }
+    D.pessoasFiltradas=filterPeopleByPeriod();
+  }
+
+  // TICKETS — fonte individual por colaborador.
+  if(ticketsBase.length){
+    const mapa={};
+    ticketsBase.forEach(r=>{
+      const nome=valorLinha(r,['Colaborador','Nome','Emissor']);
+      const qtd=numero(valorLinha(r,['Tickets em aberto','Tickets','Quantidade']));
+      if(nome) mapa[String(nome)]=qtd;
+    });
+    if(Object.keys(mapa).length){
+      D.tickets=mapa;
+      D.statusAtual=Object.assign({},D.statusAtual,{ticketsEmAberto:Object.values(mapa).reduce((a,b)=>a+numero(b),0)});
+      alterou=true;
+    }
+  }
+
+  // COMUNICADOS — todos os registros da aba COMUNICADOS.
+  // A tela adapta a área à quantidade de itens e permite rolagem somente dentro da lista quando necessário.
+  if(comunicadosBase.length){
+    D.comunicados=comunicadosBase.map(r=>({
+      tipo:String(valorLinha(r,['Tipo','Título','Titulo','Comunicado'])||'Comunicado'),
+      comunicado:String(valorLinha(r,['Comunicado','Descrição','Descricao','Observação','Observacao'])||''),
+      data:String(valorLinha(r,['Data','Prazo'])||''),
+      status:String(valorLinha(r,['Status','Situação','Situacao'])||'')
+    })).filter(x=>x.tipo || x.comunicado);
+    alterou=true;
+    // Atualiza a lista visível imediatamente com todos os registros recebidos.
+    renderComunicados();
+  }
+
+  // METAS
+  if(metas.length){
+    metas.forEach(r=>{
+      const area=String(valorLinha(r,['Área','Area','Time'])||'').toLowerCase();
+      const ind=String(valorLinha(r,['Indicador','Métrica','Metrica'])||'').toLowerCase();
+      const produto=String(valorLinha(r,['Produto','Produto financeiro'])||'').toLowerCase();
+      const val=numero(valorLinha(r,['Meta','Valor','Objetivo']));
+      if(area.includes('cart') || area.includes('concil')){
+        if(ind.includes('ident') && val) D.metasCartoes.identificacao=val;
+        if(ind.includes('concil') && val) D.metasCartoes.conciliacao=val;
+        if(ind.includes('sla') || ind.includes('prazo')) if(val) D.metasCartoes.sla=val;
+      }
+    });
+    alterou=true;
+  }
+
+  // Mantém separados: NPS atual (parcial) e NPS do último mês fechado.
+  if(D.nps?.length){
+    const atual=latestNpsCurrent(), fechadoNps=latestNpsClosed();
+    D.npsAtual=atual.valor; D.npsAtualMeta=atual.meta||75;
+    D.npsFechado=fechadoNps.valor; D.npsMeta=fechadoNps.meta||75;
+    D.npsAtualInfo=atual;
+    D.npsFechadoInfo=fechadoNps;
+  }
+  if(Array.isArray(remote.gestao) && remote.gestao.length){
+    const g={reconhecimentos:[],conquistas:[],melhorias:[],acoes:[]};
+    const cicloFechado=monthKey(D.periodoFechado||'');
+    const cicloParcial=monthKey(D.periodoParcial||'');
+    remote.gestao.forEach(r=>{
+      const tipo=normalizarChave(valorLinha(r,['Tipo','Categoria','Bloco']));
+      const mes=String(valorLinha(r,['Mês','Mes','Competência','Competencia'])||'').trim();
+      const mesKey=monthKey(mes);
+      // Gestão pode ser preenchida para o fechamento (Julho) ou para o ciclo atual (Agosto).
+      // Sem mês explícito, considera o registro válido.
+      const atual=!mesKey || mesKey===cicloFechado || mesKey===cicloParcial;
+      if(!atual) return;
+      const pessoa=String(valorLinha(r,['Pessoa/Responsável','Pessoa / Responsável','Pessoa','Responsável','Responsavel'])||'');
+      const item={
+        tipoOriginal:String(valorLinha(r,['Tipo','Categoria','Bloco'])||''),
+        titulo:String(valorLinha(r,['Título','Titulo','Ação','Acao','Reconhecimento','Melhoria'])||''),
+        pessoa,
+        descricao:String(valorLinha(r,['Descrição','Descricao','Detalhe','Observação','Observacao'])||''),
+        prazo:String(valorLinha(r,['Prazo','Data'])||''),
+        status:String(valorLinha(r,['Status'])||'')
+      };
+      // A Tela 10 usa três tipos de reconhecimento: Resultado, Colaboração e Evolução.
+      if(tipo.includes('recon') || tipo.includes('resultado') || tipo.includes('colabor') || tipo.includes('evoluc')) g.reconhecimentos.push(item);
+      else if(tipo.includes('conquist')) g.conquistas.push(item);
+      else if(tipo.includes('melhor')) g.melhorias.push(item);
+      else if(tipo.includes('acao') || tipo.includes('plano') || tipo==='a') g.acoes.push(item);
+    });
+    D.gestao=g; alterou=true;
+  }
+
+  D.pessoasFiltradas=filterPeopleByPeriod();
+
+  if(alterou){
+    render();
+    renderComunicados();
+    updateUI();
+    if(typeof setVisualMode==='function') setVisualMode(localStorage.getItem('copastur_visual_mode') || 'dark');
+  }
+
+  const st=document.getElementById('dataSourceStatus');
+  if(st) st.textContent=alterou ? '● Google Sheets conectado' : '● Google Sheets conectado · base atual';
+}
+// Inicializa os filtros de pessoas antes da primeira renderização local.
+// Isso evita que a tela fique em branco quando o Apps Script ainda não respondeu.
+D.pessoasFiltradas = filterPeopleByPeriod();
+
+function carregarGoogleSheets(){
+  return new Promise((resolve,reject)=>{
+    const callback='copasturSheetsCallback_'+Date.now();
+    const script=document.createElement('script');
+    const timer=setTimeout(()=>{cleanup();reject(new Error('timeout'));},10000);
+    function cleanup(){
+      clearTimeout(timer);
+      delete window[callback];
+      script.remove();
+    }
+    window[callback]=(data)=>{
+      cleanup();
+      try{ aplicarBaseGoogle(data); resolve(data); }catch(e){ reject(e); }
+    };
+    script.onerror=()=>{cleanup();reject(new Error('erro ao carregar API'));};
+    script.src=SHEETS_API+'?callback='+encodeURIComponent(callback);
+    document.head.appendChild(script);
+  });
+}
+function render(){document.getElementById('slides').innerHTML=slides.map(s=>s[1]()).join('');buildSidebar();go(0);drawAll();}
+renderComunicados();
+
+function renderComunicados(){
+  const el=document.getElementById('comunicadosList');
+  if(!el) return;
+  const base=Array.isArray(D.comunicados)?D.comunicados:[];
+  const remote=Array.isArray(window.__remoteComunicados)?window.__remoteComunicados:[];
+  const norm=r=>({
+    tipo:String(r?.Tipo||r?.tipo||'Comunicado').trim(),
+    comunicado:String(r?.Comunicado||r?.comunicado||'').trim(),
+    data:String(r?.Data||r?.data||'').trim(),
+    status:String(r?.Status||r?.status||'').trim()
+  });
+  const all=[...base.map(norm),...remote.map(norm)];
+  const seen=new Set();
+  const itens=(all.length?all:[{tipo:'Calibração',comunicado:'Ainda não finalizada.',data:'',status:'Aguardando'},{tipo:'Feedback · Cultura & Impacto',comunicado:'Aguardando a informação do período em que serão realizados os feedbacks das avaliações.',data:'',status:'Aguardando período'},{tipo:'Certificados',comunicado:'Certificados devem ser inclusos no Convênio',data:'',status:'Incluído por cada Colaborador'}]).filter(x=>{
+    const key=(x.tipo+'|'+x.comunicado+'|'+x.data).toLowerCase();
+    if(seen.has(key)) return false;
+    seen.add(key); return true;
+  });
+  el.innerHTML=itens.length ? itens.map(x=>{
+    const pillClass=/atras|pend|aguard/i.test(x.status)?'warn':/concl|inclu|final/i.test(x.status)?'good':'';
+    return `<div class="list-item"><span><strong>${x.tipo}</strong><small style="display:block;color:var(--muted);font-size:11px;margin-top:3px">${x.comunicado}${x.data?` · ${formatDateBR(x.data)}`:''}</small></span>${x.status?`<span class="pill ${pillClass}">${x.status}</span>`:''}</div>`;
+  }).join('') : '<div class="small">Nenhum comunicado cadastrado.</div>';
+}
+
+let idx=0;
+function buildSidebar(){const n=document.getElementById('sideNav');n.innerHTML=slides.map((s,i)=>`<button class="side-link" data-i="${i}" onclick="go(${i})" title="${s[0]}"><span class="side-num">${String(i+1).padStart(2,'0')}</span><span>${s[0]}</span></button>`).join('');}
+function buildOverview(){const g=document.getElementById('overviewGrid');const tiles=[
+['Encerramento','Julho entregue · Agosto em construção.','<div class="tile-kpi"><small>Foco</small><strong>Disciplina</strong></div><div class="tile-kpi"><small>Time</small><strong>Evolução</strong></div>'],
+['Agenda Interativa','16 telas · navegação livre','<div class="tile-kpi"><small>Modo</small><strong>Explorar</strong></div><div class="tile-kpi"><small>Atalho</small><strong>← →</strong></div>'],
+['Executive Summary','Julho/2026 · Fechado',`<div class="tile-kpis"><div class="tile-kpi"><small>Cartões</small><strong>${money(getClosedData('cartoes').valor)}</strong></div><div class="tile-kpi"><small>Comissões</small><strong>${money(getClosedData('comissoes').emitido)}</strong></div><div class="tile-kpi"><small>NPS</small><strong>${num(D.npsFechado ?? 0)}</strong></div><div class="tile-kpi"><small>Inadimplência</small><strong>${money(getClosedData('comissoes').inadimplencia)}</strong></div></div>`],
+['O mês em 60 segundos','Resumo executivo',`<div class="tile-kpis"><div class="tile-kpi"><small>TRX</small><strong>${num(getClosedData('cartoes').totalTrx)}</strong></div><div class="tile-kpi"><small>SLA</small><strong>${pct(getClosedData('cartoes').sla)}</strong></div><div class="tile-kpi"><small>CCPP</small><strong>${money(getClosedData('comissoes').emitido)}</strong></div><div class="tile-kpi"><small>Em análise</small><strong>${num(D.statusAtual?.ccppsEmAnalise ?? 0)}</strong></div></div>`],
+['Cartões · Visão Geral','Julho fechado · Agosto parcial',`<div class="tile-kpis"><div class="tile-kpi"><small>Julho</small><strong>${num(getClosedData('cartoes').totalTrx)} TRX</strong></div><div class="tile-kpi"><small>Agosto</small><strong>${num(getPartialData('cartoes').totalTrx)} TRX</strong></div></div>`],
+['Cartões · Volume & Produtos','Volume por produto',`<div class="tile-kpi"><small>Líder</small><strong>Aéreo · ${num(getClosedData('cartoes').produtos['Aéreo'])}</strong></div><div class="tile-kpi"><small>Hotel</small><strong>${num(getClosedData('cartoes').produtos['Hotel'])}</strong></div>`],
+['Cartões · Qualidade & SLA','Metas e pendências',`<div class="tile-kpis"><div class="tile-kpi"><small>Identificação</small><strong>${pct(getClosedData('cartoes').identificacao)}</strong></div><div class="tile-kpi"><small>SLA</small><strong>${pct(getClosedData('cartoes').sla)}</strong></div></div>`],
+['Comissões · Visão Geral','Julho fechado',`<div class="tile-kpis"><div class="tile-kpi"><small>Emissão</small><strong>${pct(getClosedData('comissoes').emitido/getClosedData('comissoes').meta*100)}</strong></div><div class="tile-kpi"><small>Recebido</small><strong>${money(getClosedData('comissoes').recebido)}</strong></div></div>`],
+['Comissões · Fluxo & Recebimento','Emissão · recebimento · inadimplência',`<div class="tile-kpis"><div class="tile-kpi"><small>Inadimplência</small><strong>${money(getClosedData('comissoes').inadimplencia)}</strong></div><div class="tile-kpi"><small>Tickets</small><strong>${num(D.statusAtual?.ticketsEmAberto ?? 0)}</strong></div></div>`],
+['Evolução · 12 Meses','Cartões · TRX',`<div class="tile-kpi"><small>Julho</small><strong>${num(getClosedData('cartoes').totalTrx)}</strong></div><div class="tile-kpi"><small>Agosto parcial</small><strong>${num(getPartialData('cartoes').totalTrx)}</strong></div>`],
+['Pessoas & Cultura / NPS','Responsável · Marina Scalon Benavente',`<div class="tile-kpis"><div class="tile-kpi"><small>NPS fechado</small><strong>${num(D.npsFechado ?? 0)}</strong></div><div class="tile-kpi"><small>Respostas</small><strong>${num(latestNpsClosed().respostas||0)}</strong></div></div>`],
+['Pontos de Atenção','O que acompanhar',`<div class="tile-kpi"><small>Principal</small><strong>${num(D.statusAtual?.ccppsEmAnalise ?? 0)} CCPPs em análise</strong></div>`],
+['Datas Importantes','Agosto/2026',`<div class="tile-kpis"><div class="tile-kpi"><small>Aniversário</small><strong>Thais · 28/08</strong></div><div class="tile-kpi"><small>Empresa</small><strong>Kelly · 3 anos</strong></div></div>`],
+['Encerramento','Continuamos evoluindo.','<div class="tile-kpi"><small>Próximo ciclo</small><strong>Ainda melhor</strong></div>']];
+g.innerHTML=tiles.map((t,i)=>`<article class="overview-tile" onclick="go(${i})"><div style="display:flex;gap:9px;align-items:center"><span class="tile-num">${String(i+1).padStart(2,'0')}</span><div><div class="tile-title">${t[0]}</div><div class="tile-sub">${t[1]}</div></div></div><div class="tile-body">${t[2]}</div></article>`).join('');}
+function showOverview(){idx=-1;document.getElementById('overview').style.display='block';document.querySelectorAll('.slide').forEach(s=>s.classList.remove('active'));document.querySelectorAll('.side-link').forEach(s=>s.classList.remove('active'));document.getElementById('slideNo').textContent='Visão geral';document.getElementById('slideTitle').textContent='· Julho/2026 fechado';document.getElementById('sideProgressLabel').textContent='Visão geral';document.getElementById('sideProgress').style.width='100%';document.getElementById('progress').style.width='100%';}
+function go(n){idx=Math.max(0,Math.min(slides.length-1,n));document.getElementById('overview').style.display='none';document.querySelectorAll('.slide').forEach((s,i)=>s.classList.toggle('active',i===idx));document.querySelectorAll('.side-link').forEach((s,i)=>s.classList.toggle('active',i===idx));updateUI();requestAnimationFrame(()=>{if(idx===4)volumeMode('consolidado');if(idx===8)trend('cartoes');if(idx===9)drawNps();if(idx===3)cardMode('consolidado');if(idx===13)renderComunicados();});}
+function next(){if(idx<0)go(0);else go(idx+1)} function prev(){if(idx<=0){showOverview();return}else go(idx-1)}
+function updateUI(){document.getElementById('slideNo').textContent=String(idx+1).padStart(2,'0');document.getElementById('slideTitle').textContent='· '+slides[idx][0];document.getElementById('progress').style.width=((idx+1)/slides.length*100)+'%';document.getElementById('sideProgressLabel').textContent=(idx+1)+' / '+slides.length;document.getElementById('sideProgress').style.width=((idx+1)/slides.length*100)+'%';}
+function drawAll(){setTimeout(()=>{drawProducts();drawNps();},100);cardMode('consolidado')}
+function canvasLine(canvas, labels, values, opts={}){if(!canvas)return;const c=canvas.getContext('2d'),dpr=devicePixelRatio||1,w=canvas.clientWidth,h=canvas.clientHeight;c.width=w*dpr;c.height=h*dpr;c.setTransform(dpr,0,0,dpr,0,0);c.clearRect(0,0,w,h);const pad={l:42,r:18,t:18,b:34};const max=Math.max(...values,opts.max||0)*1.08||1,min=opts.min||0;const x=i=>pad.l+i*(w-pad.l-pad.r)/Math.max(1,values.length-1);const y=v=>h-pad.b-(v-min)/(max-min)*(h-pad.t-pad.b);c.strokeStyle='rgba(255,255,255,.09)';c.lineWidth=1;for(let g=0;g<4;g++){let yy=pad.t+g*(h-pad.t-pad.b)/3;c.beginPath();c.moveTo(pad.l,yy);c.lineTo(w-pad.r,yy);c.stroke()}c.strokeStyle='#5ec8ff';c.lineWidth=3;c.beginPath();values.forEach((v,i)=>{i?c.lineTo(x(i),y(v)):c.moveTo(x(i),y(v))});c.stroke();values.forEach((v,i)=>{c.fillStyle='#fff';c.beginPath();c.arc(x(i),y(v),4,0,Math.PI*2);c.fill();c.fillStyle='#9fb2c9';c.font='11px Segoe UI';c.textAlign='center';c.fillText(labels[i],x(i),h-12)});if(opts.target!==undefined){c.setLineDash([6,5]);c.strokeStyle='#ffd166';c.beginPath();c.moveTo(pad.l,y(opts.target));c.lineTo(w-pad.r,y(opts.target));c.stroke();c.setLineDash([])}}
+function drawNps(){renderTrendSvg(document.getElementById('npsChart'),D.nps.map(x=>x.mes),D.nps.map(x=>x.valor),{min:0,max:100,target:75,suffix:'%'});}
+function getSelectedPeriodData(){return getClosedData('cartoes');}
+function getProductSplit(mode){
+  const d=getClosedData('cartoes');
+  const split=d.produtosPorProduto||{};
+  const key=mode==='card'?'CopasturCard':mode==='copastur'?'Copastur':'Consolidado';
+  const found=Object.keys(split).find(k=>normalizarChave(k)===normalizarChave(key));
+  if(found) return split[found]||{};
+  // Nunca reutilizar o Consolidado para Copastur/CopasturCard: isso mascara falta de dados.
+  return mode==='consolidado' ? (d.produtos||{}) : {};
+}
+function volumeMode(mode,el){
+ if(el){const tabs=el.parentElement.querySelectorAll('.tab');tabs.forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+ const d=getSelectedPeriodData();
+ const t=mode==='copastur'?d.copastur:mode==='card'?d.copasturCard:d.totalTrx;
+ const v=mode==='copastur'?d.copasturValor:mode==='card'?d.copasturCardValor:d.valor;
+ const nf=mode==='copastur'?d.copasturNf:mode==='card'?d.copasturCardNf:d.nf;
+ const p=getProductSplit(mode);
+ const leader=Object.entries(p||{}).filter(([,v])=>Number(v)>0).sort((a,b)=>b[1]-a[1])[0]||['—',0];
+ const elx=document.getElementById('volumeExec'); if(!elx)return;
+ elx.innerHTML=`<div class="card kpi-card"><h3>Transações</h3><div class="kpi">${num(t||0)}</div><div class="small">${mode==='consolidado'?'Copastur + CopasturCard':mode==='copastur'?'Cartões Copastur':'CopasturCard'}</div></div><div class="card kpi-card"><h3>Valor processado</h3><div class="kpi">${money(v||0)}</div></div><div class="card kpi-card"><h3>NF capturadas</h3><div class="kpi">${num(nf||0)}</div></div><div class="card kpi-card"><h3>Produto líder</h3><div class="kpi">${leader[0]}</div><div class="small">${num(leader[1])} TRX</div></div>`;
+ const prodEl=document.getElementById('prodChart'); if(prodEl){const arr=Object.entries(p||{}).filter(([,val])=>val>0).sort((a,b)=>b[1]-a[1]);const max=Math.max(...arr.map(x=>x[1]),1);prodEl.innerHTML=arr.map(([k,val])=>`<div class="product-row"><div class="label">${k}</div><div class="product-track"><div class="product-fill" style="width:${(val/max*100).toFixed(2)}%"></div></div><div class="product-value">${num(val)}</div></div>`).join('');}
+}
+function drawProducts(){
+ const el=document.getElementById('prodChart'); if(!el)return;
+ const arr=Object.entries(getClosedData('cartoes').produtos).sort((a,b)=>b[1]-a[1]);
+ const max=Math.max(...arr.map(x=>x[1]))||1;
+ el.innerHTML=arr.map(([k,v])=>`<div class="product-row"><div class="label">${k}</div><div class="product-track"><div class="product-fill" style="width:${(v/max*100).toFixed(2)}%"></div></div><div class="product-value">${num(v)}</div></div>`).join('');
+}
+function cardMode(mode,el){
+ if(el){document.querySelectorAll('.tabs .tab').forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+ const d=getSelectedPeriodData();
+ const x=mode==='copastur'?{t:d.copastur,v:d.copasturValor,nf:d.copasturNf,p:getProductSplit(mode),conc:d.conciliacao,id:d.identificacao,prazo:d.sla}:mode==='card'?{t:d.copasturCard,v:d.copasturCardValor,nf:d.copasturCardNf,p:getProductSplit(mode),conc:d.copasturCardConciliacao,id:d.copasturCardIdentificacao,prazo:d.copasturCardDentroPrazo}:{t:d.totalTrx,v:d.valor,nf:d.nf,p:getProductSplit(mode),conc:d.conciliacao,id:d.identificacao,prazo:d.sla};
+ const meta=D.metasCartoes, elx=document.getElementById('cardExec'); if(!elx)return;
+ const concEl=document.getElementById('cardConcResult'),concMetaEl=document.getElementById('cardConcMeta'),concGapEl=document.getElementById('cardConcGap'),slaEl=document.getElementById('cardSlaResult'),slaMetaEl=document.getElementById('cardSlaMeta');
+ if(concEl) concEl.textContent=pct(x.conc||0); if(concMetaEl) concMetaEl.textContent=pct(meta.conciliacao);
+ if(concGapEl){const gap=(x.conc||0)-meta.conciliacao;concGapEl.textContent=(gap>=0?'Atingida · +':'Gap · ')+Math.abs(gap).toFixed(2).replace('.',',')+' p.p.';concGapEl.className='pill '+(gap>=0?'good':'warn');}
+ if(slaEl) slaEl.textContent=pct(x.prazo||0); if(slaMetaEl){slaMetaEl.textContent='Meta ≥ '+pct(meta.sla);slaMetaEl.className='pill '+((x.prazo||0)>=meta.sla?'good':'warn');}
+ const leader=Object.entries(x.p||{}).filter(([,v])=>v>0).sort((a,b)=>b[1]-a[1])[0]||['—',0];
+ elx.innerHTML=`<div class="card kpi-card"><h3>Transações</h3><div class="kpi">${num(x.t||0)}</div><div class="small">${mode==='consolidado'?'Copastur + CopasturCard':mode==='copastur'?'Cartões Copastur':'CopasturCard'}</div></div><div class="card kpi-card"><h3>Valor processado</h3><div class="kpi">${money(x.v||0)}</div></div><div class="card kpi-card"><h3>NF capturadas</h3><div class="kpi">${num(x.nf||0)}</div></div><div class="card kpi-card"><h3>Produto líder</h3><div class="kpi">${leader[0]}</div><div class="small">${num(leader[1])} TRX</div></div><div class="card kpi-card"><h3>Identificação · resultado</h3><div class="kpi">${pct(x.id||0)}</div><div class="small">Meta: <strong>${pct(meta.identificacao)}</strong></div></div><div class="card kpi-card"><h3>Conciliação · resultado</h3><div class="kpi">${pct(x.conc||0)}</div><div class="small">Meta: <strong>${pct(meta.conciliacao)}</strong></div></div><div class="card kpi-card"><h3>Até 7 dias · resultado</h3><div class="kpi">${pct(x.prazo||0)}</div><div class="small">Meta: <strong>${pct(meta.sla)}</strong></div></div>`;
+}
+function trend(type,el){
+ if(el){const tabs=el.parentElement.querySelectorAll('.tab');tabs.forEach(x=>x.classList.remove('active'));el.classList.add('active')}
+ const c=document.getElementById('trendChart'); if(!c)return;
+ if(type==='nps'){
+   renderTrendSvg(c,D.nps.map(x=>x.mes),D.nps.map(x=>x.valor),{suffix:'%',target:75,max:100});
+   return;
+ }
+ if(type==='cartoes'){
+   renderTrendSvg(c,D.cartoes12m.map(x=>x.mes),D.cartoes12m.map(x=>x.valor),{suffix:'',compact:true});
+   return;
+ }
+ if(type==='emissao'){
+   renderTrendSvg(c,D.comissoes12m.map(x=>x.parcial?'Ago/26*':x.mes),D.comissoes12m.map(x=>x.valor),{suffix:'',compact:true});
+   return;
+ }
+}
+function renderTrendSvg(el,labels,values,opts={}){
+ if(!el||!values.length)return;
+ const W=1200,H=340,L=62,R=28,T=28,B=58;
+ const min=opts.min!==undefined?opts.min:0;
+ const rawMax=Math.max(...values,opts.target||0);
+ const max=opts.max!==undefined?opts.max:(rawMax*1.12||1);
+ const span=(max-min)||1;
+ const x=i=>L+i*(W-L-R)/Math.max(1,values.length-1);
+ const y=v=>H-B-(v-min)/span*(H-T-B);
+ const fmt=v=>{
+   if(opts.suffix==='%') return Number(v).toFixed(2).replace('.',',')+'%';
+   const n=Number(v);
+   if(n>=1000000) return 'R$ '+(n/1000000).toFixed(1).replace('.',',')+' mi';
+   if(n>=1000) return 'R$ '+(n/1000).toFixed(0)+' mil';
+   return n.toLocaleString('pt-BR');
+ };
+ const grid=[0,1,2,3].map(g=>{
+   const yy=T+g*(H-T-B)/3;
+   const val=max-g*(max-min)/3;
+   return `<line x1="${L}" y1="${yy}" x2="${W-R}" y2="${yy}" stroke="rgba(255,255,255,.10)" stroke-width="1"/><text x="${L-10}" y="${yy+4}" text-anchor="end" fill="#9fb2c9" font-size="12">${fmt(val)}</text>`;
+ }).join('');
+ const points=values.map((v,i)=>`${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(' ');
+ const labelStep=values.length>9?2:1;
+ const dots=values.map((v,i)=>{
+   const showLabel=(i===0||i===values.length-1||i%labelStep===0);
+   const label=showLabel?formatDateBR(labels[i]):'';
+   return `<circle cx="${x(i)}" cy="${y(v)}" r="5" fill="#fff"/>${showLabel?`<text x="${x(i)}" y="${H-18}" text-anchor="middle" fill="#9fb2c9" font-size="11">${label}</text>`:''}`;
+ }).join('');
+ const target=opts.target!==undefined?`<line x1="${L}" y1="${y(opts.target)}" x2="${W-R}" y2="${y(opts.target)}" stroke="#ffd166" stroke-width="2" stroke-dasharray="7 6"/><text x="${W-R}" y="${y(opts.target)-8}" text-anchor="end" fill="#ffd166" font-size="12">Meta ${opts.target}${opts.suffix||''}</text>`:'';
+ el.innerHTML=`<svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="Evolução"><g>${grid}</g>${target}<polyline points="${points}" fill="none" stroke="#5ec8ff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>${dots}</svg>`;
+}
+function toggleSidebar(){
+ const sb=document.querySelector('.sidebar');
+ if(!sb)return;
+ sb.classList.toggle('collapsed');
+ localStorage.setItem('copasturSidebarCollapsed',sb.classList.contains('collapsed')?'1':'0');
+}
+function restoreSidebar(){
+ const sb=document.querySelector('.sidebar');
+ if(sb && localStorage.getItem('copasturSidebarCollapsed')==='1')sb.classList.add('collapsed');
+}
+function openMenu(){openModal('menu')}
+function openModal(type){const m=document.getElementById('modal'),c=document.getElementById('modalContent');m.classList.add('show');if(type==='ia'){c.innerHTML=`<div class="kicker">Explicabilidade</div><h2>Por que este insight?</h2><p>O resumo considera somente indicadores já validados na Camada 2.</p><div class="list"><div class="list-item"><span>Comissões emitidos</span><strong>${money(getClosedData('comissoes').emitido)}</strong></div><div class="list-item"><span>Meta de emissão</span><strong>${money(getClosedData('comissoes').meta)}</strong></div><div class="list-item"><span>Cartões SLA</span><strong>${pct(getClosedData('cartoes').sla)}</strong></div><div class="list-item"><span>Inadimplência</span><strong>${money(getClosedData('comissoes').inadimplencia)}</strong></div><div class="list-item"><span>Em análise</span><strong>${num(D.statusAtual?.ccppsEmAnalise ?? 0)} CCPPs</strong></div></div><div class="callout warn" style="margin-top:18px">A IA não usa diferença entre emissão e recebimento como inadimplência e não cria causas que não estejam sustentadas pelos dados.</div>`}else{c.innerHTML=`<div class="kicker">Navegação</div><h2>Menu da apresentação</h2><div class="grid g2">${slides.map((s,i)=>`<button class="btn" style="text-align:left" onclick="closeModal();go(${i})">${String(i+1).padStart(2,'0')} · ${s[0]}</button>`).join('')}</div>`}}
+function closeModal(){document.getElementById('modal').classList.remove('show')}
+function startPresentation(ev){
+  if(ev){ev.preventDefault();ev.stopPropagation();}
+  const overview=document.getElementById('overview');
+  const slidesEl=document.getElementById('slides');
+  if(!slidesEl){
+    alert('Não foi possível carregar as telas da apresentação.');
+    return false;
+  }
+  if(overview) overview.style.display='none';
+  slidesEl.style.display='block';
+
+  // A Capa é a Tela 01. O botão "Iniciar apresentação"
+  // deve avançar para a primeira tela de conteúdo (Tela 02).
+  idx=1;
+  const all=document.querySelectorAll('.slide');
+  all.forEach((el,i)=>el.classList.toggle('active',i===idx));
+  document.querySelectorAll('.side-link').forEach((el,i)=>el.classList.toggle('active',i===idx));
+  updateUI();
+  requestAnimationFrame(()=>{
+    if(typeof cardMode==='function' && idx===3) cardMode('consolidado');
+    if(typeof volumeMode==='function' && idx===4) volumeMode('consolidado');
+    window.scrollTo(0,0);
+  });
+  return false;
+}
+function toggleFullscreen(){if(!document.fullscreenElement)document.documentElement.requestFullscreen?.();else document.exitFullscreen?.()}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key==='PageDown')next();if(e.key==='ArrowLeft'||e.key==='PageUp')prev();if(e.key==='Escape')closeModal();if(e.key.toLowerCase()==='f')toggleFullscreen()});
+window.addEventListener('resize',()=>{drawProducts();drawNps();trend('cartoes')});
+render(); restoreSidebar();
+setVisualMode(localStorage.getItem('copastur_visual_mode') || 'dark');
+const startBtn=document.getElementById('startPresentationBtn');
+if(startBtn) startBtn.onclick=startPresentation;
+carregarGoogleSheets().catch(()=>{
+  const st=document.getElementById('dataSourceStatus');
+  if(st) st.textContent='● Base local · Google Sheets indisponível';
+});
+</script>
+
+<script>
+const ACCESS_API = "https://script.google.com/macros/s/AKfycbxIgaKSaYDSjDMohB7o2TYXPVNDaFcgwMbpk6qJ96ux91WQLWpgz_s1cQSnkgBKrYbJ/exec";
+
+function entrarDashboard(){
+  const input=document.getElementById('accessEmail');
+  const err=document.getElementById('accessError');
+  const email=String(input?.value||'').trim().toLowerCase();
+
+  if(!/^[^\s@]+@copastur\.com\.br$/i.test(email)){
+    if(err) err.textContent='Informe um e-mail corporativo @copastur.com.br.';
+    return;
+  }
+
+  if(err) err.textContent='Registrando acesso...';
+
+  // Registro de acesso. O dashboard não depende do retorno do registro.
+  const callback='accessLogCallback_'+Date.now();
+  const script=document.createElement('script');
+  const timer=setTimeout(()=>{
+    cleanup();
+    liberarDashboard(email);
+  },5000);
+
+  function cleanup(){
+    clearTimeout(timer);
+    try{delete window[callback];}catch(e){}
+    script.remove();
+  }
+
+  window[callback]=function(){
+    cleanup();
+    liberarDashboard(email);
+  };
+
+  script.onerror=function(){
+    cleanup();
+    liberarDashboard(email);
+  };
+
+  script.src=ACCESS_API+
+    '?acao=registrar_acesso'+
+    '&email='+encodeURIComponent(email)+
+    '&callback='+encodeURIComponent(callback);
+
+  document.head.appendChild(script);
+}
+
+function liberarDashboard(email){
+  const gate=document.getElementById('accessGate');
+  if(gate) gate.style.display='none';
+  sessionStorage.setItem('dashboard_access_email',email);
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+  const email=sessionStorage.getItem('dashboard_access_email');
+  if(email && /^[^\s@]+@copastur\.com\.br$/i.test(email)){
+    const gate=document.getElementById('accessGate');
+    if(gate) gate.style.display='none';
+  }
+  const input=document.getElementById('accessEmail');
+  if(input) input.addEventListener('keydown',e=>{
+    if(e.key==='Enter') entrarDashboard();
+  });
+});
+</script>
+
+</body>
+</html>
